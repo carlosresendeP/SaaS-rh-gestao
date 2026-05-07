@@ -1,12 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsup src/server.ts --format cjs --out-dir dist",
-    "start": "tsx src/server.ts"
+    "start": "node dist/server.cjs"
   },
   "keywords": [],
   "author": "",
