@@ -72,7 +72,7 @@ export class AuthService {
       role: user.role 
     };
     
-    const token = jwt.sign(payload, env.JWT_SECRET, { expiresIn: "1d" });
+    const token = jwt.sign(payload, env.JWT_SECRET, { expiresIn: "7d" });
 
     return {
       token,

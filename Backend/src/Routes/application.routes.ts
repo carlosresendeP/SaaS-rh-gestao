@@ -31,19 +31,19 @@ export async function applicationRoutes(app: FastifyInstance) {
   );
 
 // 3. Listar candidatos de uma vaga específica
-  // Adicionamos <{ Params: { jobId: string } }> para casar com o Controller
   app.get<{ Params: { jobId: string } }>(
-    "/job/:jobId", 
+    "/job/:jobId",
+    { preHandler: [authMiddleware] },
     applicationController.listByJob
   );
 
   // 4. Mudar status do candidato (Funil)
-  // Tipamos o Params e o Body para aceitar apenas o Enum ApplicationStatus
-  app.patch<{ 
-    Params: { id: string }, 
-    Body: { status: ApplicationStatus } 
+  app.patch<{
+    Params: { id: string },
+    Body: { status: ApplicationStatus }
   }>(
     "/:id/status",
+    { preHandler: [authMiddleware] },
     applicationController.updateStatus
   );
 

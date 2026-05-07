@@ -54,12 +54,8 @@ Base URL: `http://localhost:3001/api`
 ```
 
 **PATCH** `http://localhost:3001/api/company/onboarding/:step`
-> Substitua `:step` pelo número da etapa (1, 2, 3 ou 4)
-```json
-{
-  "onboardingStep": 2
-}
-```
+> Substitua `:step` pelo número da etapa (1, 2, 3 ou 4) diretamente na URL — sem body
+> Exemplo: `PATCH /api/company/onboarding/2`
 
 ---
 
@@ -72,7 +68,8 @@ Base URL: `http://localhost:3001/api`
   "descricao": "Responsável por desenvolver e manter as aplicações da empresa.",
   "requisitos": "Node.js, React, PostgreSQL",
   "salaryMin": 5000,
-  "salaryMax": 8000
+  "salaryMax": 8000,
+  "status": "FECHADA"
 }
 ```
 
@@ -95,6 +92,8 @@ Base URL: `http://localhost:3001/api`
 
 ## Applications
 
+### essa rota cria um candidato na vaga desejada
+
 **POST** `http://localhost:3001/api/applications/apply`
 ```json
 {
@@ -110,7 +109,7 @@ Base URL: `http://localhost:3001/api`
 > Sem body — requer Bearer token
 
 **GET** `http://localhost:3001/api/applications/job/:jobId`
-> Sem body — substitua `:jobId` pelo UUID da vaga
+> Sem body — substitua `:jobId` pelo UUID da vaga — requer Bearer token
 
 **PATCH** `http://localhost:3001/api/applications/:id/status`
 ```json

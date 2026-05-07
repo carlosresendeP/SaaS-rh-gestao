@@ -1,7 +1,8 @@
-import { prisma } from "@/config/prisma"; 
+import { prisma } from "@/config/prisma";
 import { AppError } from "@/config/error";
 import { ApplyJobDTO } from "../schemas/application.schema";
 import { ApplicationStatus } from "@/generated/prisma/enums";
+import { formatBR } from "@/config/dayjs";
 
 export class ApplicationService {
   async apply(data: ApplyJobDTO) {
@@ -52,7 +53,7 @@ export class ApplicationService {
       data: {
         jobId: job.id,
         candidateId: candidate.id,
-        companyId: job.companyId, // Multi-tenancy garantido
+        companyId: job.companyId,
       },
       include: {
         candidate: true,
@@ -60,33 +61,42 @@ export class ApplicationService {
       }
     });
 
-    return application;
+    return {
+      ...application,
+      createdAt: formatBR(application.createdAt),
+      updatedAt: formatBR(application.updatedAt),
+    };
   }
 
-  //listar as aplicações de uma empresa
   async listByCompany(companyId: string) {
-  // O Prisma já sabe buscar as relações graças ao que configuramos no schema
-  const applications = await prisma.application.findMany({
-    where: { companyId },
-    include: {
-      candidate: true, // Traz os dados do candidato (nome, email, etc)
-      job: { 
-        select: { titulo: true } // Traz apenas o título da vaga para não sobrecarregar o JSON
-      }
-    },
-    orderBy: { createdAt: 'desc' } // Os mais recentes primeiro
-  });
+    const applications = await prisma.application.findMany({
+      where: { companyId },
+      include: {
+        candidate: true,
+        job: { select: { titulo: true } }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
 
-  return applications;
-
-
+    return applications.map(a => ({
+      ...a,
+      createdAt: formatBR(a.createdAt),
+      updatedAt: formatBR(a.updatedAt),
+    }));
   }
-async listByJob(jobId: string, companyId: string) {
-  return await prisma.application.findMany({
-    where: { jobId, companyId },
-    include: { candidate: true }
-  });
-}
+
+  async listByJob(jobId: string, companyId: string) {
+    const applications = await prisma.application.findMany({
+      where: { jobId, companyId },
+      include: { candidate: true }
+    });
+
+    return applications.map(a => ({
+      ...a,
+      createdAt: formatBR(a.createdAt),
+      updatedAt: formatBR(a.updatedAt),
+    }));
+  }
 
 async updateStatus(id: string, companyId: string, status: ApplicationStatus) {
   return await prisma.application.update({

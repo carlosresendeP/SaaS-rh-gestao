@@ -1,6 +1,7 @@
 import { prisma } from "@/config/prisma";
 import { CreateJobDTO, UpdateJobDTO } from "../schemas/job.schema";
 import { AppError } from "@/config/error";
+import { formatBR } from "@/config/dayjs";
 
 export class JobService {
   async create(data: CreateJobDTO, companyId: string) {
@@ -37,17 +38,13 @@ export class JobService {
     }
 
     try {
-      // 5. Criação da vaga
-      const job = await prisma.job.create({
-        data: {
-          ...data,
-          companyId,
-        },
-      });
-
-      return job;
+      const job = await prisma.job.create({ data: { ...data, companyId } });
+      return {
+        ...job,
+        createdAt: formatBR(job.createdAt),
+        updatedAt: formatBR(job.updatedAt),
+      };
     } catch (error) {
-      // Caso ocorra algum erro inesperado no banco de dados
       console.error("Erro ao criar vaga no banco:", error);
       throw new AppError("Erro interno ao processar a criação da vaga.", 500);
     }
@@ -63,24 +60,30 @@ export class JobService {
       orderBy: { createdAt: "desc" },
     });
 
-    return jobs;
+    return jobs.map(j => ({
+      ...j,
+      createdAt: formatBR(j.createdAt),
+      updatedAt: formatBR(j.updatedAt),
+    }));
   }
 
-
-  //listando vaga por id
   async getById(id: string, companyId: string) {
-  const job = await prisma.job.findFirst({
-    where: { id, companyId }
-  });
-  if (!job) throw new AppError("Vaga não encontrada", 404);
-  return job;
-}
+    const job = await prisma.job.findFirst({ where: { id, companyId } });
+    if (!job) throw new AppError("Vaga não encontrada", 404);
+    return {
+      ...job,
+      createdAt: formatBR(job.createdAt),
+      updatedAt: formatBR(job.updatedAt),
+    };
+  }
 
 //update de vaga
-async update(id: string, companyId: string, data: UpdateJobDTO) {
-  return await prisma.job.update({
-    where: { id, companyId }, // Segurança Multi-tenant
-    data
-  });
-}
+  async update(id: string, companyId: string, data: UpdateJobDTO) {
+    const job = await prisma.job.update({ where: { id, companyId }, data });
+    return {
+      ...job,
+      createdAt: formatBR(job.createdAt),
+      updatedAt: formatBR(job.updatedAt),
+    };
+  }
 }
