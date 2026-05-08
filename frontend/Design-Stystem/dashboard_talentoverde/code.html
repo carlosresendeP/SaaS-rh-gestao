@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - TalentoVerde</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffddb5",
+                        "tertiary-fixed-dim": "#e4c197",
+                        "surface-tint": "#486800",
+                        "primary-fixed-dim": "#a0d832",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff2eb",
+                        "on-surface-variant": "#434936",
+                        "primary-container": "#c4ff57",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e9e2",
+                        "surface-container-low": "#f2f4ed",
+                        "on-secondary-fixed": "#0d2003",
+                        "secondary": "#4e653e",
+                        "secondary-container": "#d0ebb9",
+                        "primary-fixed": "#bbf54e",
+                        "tertiary-container": "#ffe9d2",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#374d28",
+                        "on-surface": "#191c18",
+                        "inverse-primary": "#a0d832",
+                        "on-background": "#191c18",
+                        "surface-variant": "#e1e3dc",
+                        "outline": "#737a64",
+                        "on-primary-container": "#527500",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8faf3",
+                        "on-primary-fixed": "#131f00",
+                        "surface-dim": "#d9dbd4",
+                        "surface-container-highest": "#e1e3dc",
+                        "secondary-fixed": "#d0ebb9",
+                        "primary": "#486800",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e312d",
+                        "surface-container": "#edefe8",
+                        "background": "#f8faf3",
+                        "on-primary-fixed-variant": "#354e00",
+                        "surface": "#f8faf3",
+                        "on-tertiary-container": "#816642",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#b5cf9f",
+                        "on-tertiary-fixed": "#2a1800",
+                        "outline-variant": "#c3c9b0",
+                        "on-tertiary-fixed-variant": "#5a4222",
+                        "tertiary": "#745a37",
+                        "on-secondary-container": "#546b43",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "container-padding": "40px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F5F7F0; } /* Fallback background matching level 0 */
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-secondary flex flex-col h-full py-lg z-20">
+<div class="px-lg mb-xl">
+<h1 class="font-h3 text-h3 font-bold text-primary-fixed flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+                TalentoVerde
+            </h1>
+<p class="text-surface-variant opacity-80 text-sm mt-xs">Recrutamento Tech</p>
+</div>
+<div class="px-md mb-lg">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-bold py-md rounded-lg flex items-center justify-center gap-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+                Nova Vaga
+            </button>
+</div>
+<ul class="flex-1 flex flex-col gap-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm border-l-4 border-primary-fixed bg-on-secondary-fixed-variant text-primary-fixed font-bold scale-[0.98] duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined">work</span>
+                    Vagas
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Candidatos
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Entrevistas
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                    Testes
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Configurações
+                </a>
+</li>
+</ul>
+<div class="mt-auto px-md">
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Sair
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-[280px] flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface flex justify-between items-center h-16 px-lg border-b border-outline-variant z-10 shrink-0">
+<div class="flex items-center gap-xl">
+<h2 class="font-h3 text-h3 text-primary">Portal de Recrutamento</h2>
+<nav class="hidden md:flex gap-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps transition-all duration-200" href="#">Visão Geral</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Relatórios</a>
+</nav>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-full py-sm pl-xl pr-md text-sm focus:outline-none focus:border-primary-fixed focus:bg-surface w-64 transition-all" placeholder="Buscar candidatos..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<img alt="Avatar do Recrutador" class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a smiling female recruiter in a modern office setting. The lighting is bright and natural, creating a welcoming, corporate modern aesthetic. She wears a sharp blazer. The background is slightly blurred with soft off-white and green tones reflecting a nature-tech environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsKieiMLetcg1ukLS0igxqUGyd0tHJtxHTlCdLe0tYd3x71lacuPFHfpaGQSSUBPy9sf0YdieDQ0al1QZMBXSSk_RwRXFCXa7HsTry33r3VPFB3Uz7y0HQmj4TzA7gB36nb2z9Y8O1JoHfwdDVlNPhod6rkUwMjTqrpIuBFxjykaLr5WShcsI0j5VIHg8lIUgVOdnX6mK0sf2wY_dGBiDHmfEONdnzY2s8vKEsyQZlxZdrHc7sFdp2M202ECPrdHx8R27Fx-mv5Bc"/>
+</div>
+</header>
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding bg-background">
+<div class="max-w-[1440px] mx-auto">
+<!-- KPI Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-xl">
+<!-- KPI 1 -->
+<div class="bg-surface rounded-xl p-lg border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)]">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-xs">VAGAS ABERTAS</p>
+<h3 class="font-h2 text-h2 text-on-surface">14</h3>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+</div>
+</div>
+<p class="text-sm text-secondary flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +2 nesta semana
+                        </p>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface rounded-xl p-lg border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)]">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-xs">CANDIDATOS ATIVOS</p>
+<h3 class="font-h2 text-h2 text-on-surface">287</h3>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+</div>
+<p class="text-sm text-secondary flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +45 novos currículos
+                        </p>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface rounded-xl p-lg border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)]">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-xs">EM ENTREVISTA</p>
+<h3 class="font-h2 text-h2 text-on-surface">42</h3>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+</div>
+<p class="text-sm text-secondary flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            12 agendadas hoje
+                        </p>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface rounded-xl p-lg border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)]">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-xs">APROVADOS ESTE MÊS</p>
+<h3 class="font-h2 text-h2 text-on-surface">08</h3>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+</div>
+<p class="text-sm text-outline flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                            Meta mensal: 15
+                        </p>
+</div>
+</div>
+<!-- Bento Layout: Funnel & Recent -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Left Column: Funnel Visualization -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<div class="bg-surface rounded-xl border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)] p-lg flex-1">
+<h3 class="font-label-caps text-label-caps text-on-surface mb-lg">FUNIL DE RECRUTAMENTO GERAL</h3>
+<div class="flex flex-col gap-sm h-[300px] justify-center px-xl">
+<!-- Funnel Stage 1 -->
+<div class="relative h-12 flex items-center w-full group">
+<div class="absolute left-0 h-full bg-secondary-fixed opacity-30 rounded-r-full" style="width: 100%"></div>
+<div class="absolute left-0 h-full bg-secondary rounded-r-full flex items-center px-md transition-all group-hover:bg-primary" style="width: 100%">
+<span class="text-on-primary font-bold w-32">Triagem</span>
+<span class="text-on-primary ml-auto font-h3">287</span>
+</div>
+</div>
+<!-- Funnel Stage 2 -->
+<div class="relative h-12 flex items-center w-full group">
+<div class="absolute left-0 h-full bg-secondary-fixed opacity-30 rounded-r-full" style="width: 75%"></div>
+<div class="absolute left-0 h-full bg-secondary rounded-r-full flex items-center px-md transition-all group-hover:bg-primary" style="width: 75%">
+<span class="text-on-primary font-bold w-32">Teste Técnico</span>
+<span class="text-on-primary ml-auto font-h3">145</span>
+</div>
+</div>
+<!-- Funnel Stage 3 -->
+<div class="relative h-12 flex items-center w-full group">
+<div class="absolute left-0 h-full bg-secondary-fixed opacity-30 rounded-r-full" style="width: 40%"></div>
+<div class="absolute left-0 h-full bg-secondary rounded-r-full flex items-center px-md transition-all group-hover:bg-primary" style="width: 40%">
+<span class="text-on-primary font-bold w-32">Entrevista RH</span>
+<span class="text-on-primary ml-auto font-h3">86</span>
+</div>
+</div>
+<!-- Funnel Stage 4 -->
+<div class="relative h-12 flex items-center w-full group">
+<div class="absolute left-0 h-full bg-secondary-fixed opacity-30 rounded-r-full" style="width: 20%"></div>
+<div class="absolute left-0 h-full bg-secondary rounded-r-full flex items-center px-md transition-all group-hover:bg-primary" style="width: 20%">
+<span class="text-on-primary font-bold w-32">Entrevista Gestor</span>
+<span class="text-on-primary ml-auto font-h3">42</span>
+</div>
+</div>
+<!-- Funnel Stage 5 -->
+<div class="relative h-12 flex items-center w-full group">
+<div class="absolute left-0 h-full bg-secondary-fixed opacity-30 rounded-r-full" style="width: 8%"></div>
+<div class="absolute left-0 h-full bg-primary-fixed rounded-r-full flex items-center px-md transition-all" style="width: 8%">
+<span class="text-on-primary-fixed font-bold w-32">Oferta</span>
+<span class="text-on-primary-fixed ml-auto font-h3">14</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Recent Applications List -->
+<div class="bg-surface rounded-xl border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)] flex flex-col h-full">
+<div class="p-lg border-b border-[#D6B48B] flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-on-surface">ATIVIDADE RECENTE</h3>
+<button class="text-primary text-sm hover:underline">Ver todas</button>
+</div>
+<div class="flex-1 overflow-y-auto px-md py-sm">
+<!-- List Item 1 -->
+<div class="flex items-center gap-md py-md border-b border-[#D6B48B]/50 last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-sm">
+<img alt="Candidato" class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a young male software developer. Bright studio lighting, clean background. He is wearing a casual button-down shirt, reflecting a modern tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANuvsccBa2CSwvCXUqkHVv6M14ghYh9cfWRE1JXnCsC_PGx7u52r5Vsug-7l9Bev5ZmZxY7h2gPk37nbqYJSvE7WRFjB2ZOwAZaLpu2E8_V8sAucL_dKlLto-iHQNF_tMiJdqSft_FHuvfBxtkoZDG4Rcd4yPvznpfY1iEhHOtCgGjPzzf_M4nJj_hJyEIMqvgVGNjwRSqr0rIaaVNmbJmu943MN-1A5Pfb06GJtEeXBQ2tks4blVtQjlVaEt_gx-TeW1vctu8JTg"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-on-surface truncate">Carlos Mendes</p>
+<p class="text-sm text-outline truncate">DevOps Engineer Pleno</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-surface-variant text-on-surface border border-outline-variant">
+                                    EM_ANALISE
+                                </span>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center gap-md py-md border-b border-[#D6B48B]/50 last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold">
+                                    LM
+                                </div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-on-surface truncate">Laura Martins</p>
+<p class="text-sm text-outline truncate">UX/UI Designer Sênior</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-secondary text-on-primary border border-secondary">
+                                    APROVADO
+                                </span>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-center gap-md py-md border-b border-[#D6B48B]/50 last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-sm">
+<img alt="Candidata" class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a female tech professional with curly hair. Soft, warm lighting, minimalist background. She is wearing a modern green blouse, fitting the Nature-Tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaec5lzHSZIGUmGLtoWp2SiB5gqCm8VcsoUemobcRcSI6v1f_ix85evCACb0uaIW5mjswOg_RJWk5835prQqA67B_bVcOhcVpPmO-zJqzKNsdrV6_Mkpv9sbIk5Kduiw9dDBikWsW7DULWQjV3iwCZXZhj3ieXucOxpgvc2i2NUGDBW5ANvKktycRN2hDFTNEdny6WV30lC6a_cgFaYozYjfkxqUelxxwND8VY5gWwNuddYlChb7Y2BgbgD-NywcMhSlODfEFE2Yw"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-on-surface truncate">Ana Costa</p>
+<p class="text-sm text-outline truncate">Frontend Developer</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-surface-variant text-on-surface border border-outline-variant">
+                                    PENDENTE
+                                </span>
+</div>
+<!-- List Item 4 -->
+<div class="flex items-center gap-md py-md border-b border-[#D6B48B]/50 last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-sm">
+<div class="w-10 h-10 rounded-full bg-surface-dim text-on-surface flex items-center justify-center font-bold">
+                                    JP
+                                </div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-on-surface truncate">João Pedro</p>
+<p class="text-sm text-outline truncate">Data Scientist</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-primary-container text-on-primary-container border border-primary-fixed">
+                                    ENTREVISTA
+                                </span>
+</div>
+<!-- List Item 5 -->
+<div class="flex items-center gap-md py-md border-b border-[#D6B48B]/50 last:border-0 hover:bg-surface-container-low transition-colors rounded-lg px-sm">
+<img alt="Candidato" class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a mature male executive. Serious but approachable expression. Crisp lighting, corporate environment background with subtle green plant leaves visible out of focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE1pRNMjPj-X1lUQKTjEoS13uP5sdzg2kGsUcAvIezbmG5-sKPCjmsPJCT4KeJStLlcm-GTd2JwmHKe_KyyllyajXxOMmjj0LdwjPkGZjyFvZFd-Z1SsCYk9NrqoHfsXqzYJ5GagEikS6MtAEcyVtriEY75eT9G2cGKpmag7fGS-1x2oBTa6xlAhWUPJNKLWBnPEMn4S-gxxsJ5iekbkWahSf4QHVRUDLfoDRgmkHLOMosBjfIlH5S8C-jlRhBy8eFLWTRXAcl4PY"/>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-on-surface truncate">Roberto Silva</p>
+<p class="text-sm text-outline truncate">Engineering Manager</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-surface-variant text-on-surface border border-outline-variant">
+                                    EM_ANALISE
+                                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

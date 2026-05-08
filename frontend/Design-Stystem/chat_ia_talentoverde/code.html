@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chat IA - TalentoVerde</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffddb5",
+                    "tertiary-fixed-dim": "#e4c197",
+                    "surface-tint": "#486800",
+                    "primary-fixed-dim": "#a0d832",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#eff2eb",
+                    "on-surface-variant": "#434936",
+                    "primary-container": "#c4ff57",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e7e9e2",
+                    "surface-container-low": "#f2f4ed",
+                    "on-secondary-fixed": "#0d2003",
+                    "secondary": "#4e653e",
+                    "secondary-container": "#d0ebb9",
+                    "primary-fixed": "#bbf54e",
+                    "tertiary-container": "#ffe9d2",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#374d28",
+                    "on-surface": "#191c18",
+                    "inverse-primary": "#a0d832",
+                    "on-background": "#191c18",
+                    "surface-variant": "#e1e3dc",
+                    "outline": "#737a64",
+                    "on-primary-container": "#527500",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8faf3",
+                    "on-primary-fixed": "#131f00",
+                    "surface-dim": "#d9dbd4",
+                    "surface-container-highest": "#e1e3dc",
+                    "secondary-fixed": "#d0ebb9",
+                    "primary": "#486800",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e312d",
+                    "surface-container": "#edefe8",
+                    "background": "#f8faf3",
+                    "on-primary-fixed-variant": "#354e00",
+                    "surface": "#f8faf3",
+                    "on-tertiary-container": "#816642",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#b5cf9f",
+                    "on-tertiary-fixed": "#2a1800",
+                    "outline-variant": "#c3c9b0",
+                    "on-tertiary-fixed-variant": "#5a4222",
+                    "tertiary": "#745a37",
+                    "on-secondary-container": "#546b43",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "sm": "8px",
+                    "container-padding": "40px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "gutter": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "h2": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h1": ["Inter"],
+                    "h3": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #d9dbd4;
+            border-radius: 9999px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-secondary dark:bg-inverse-surface fixed left-0 top-0 h-full w-[280px] flex flex-col h-full py-lg z-20">
+<div class="px-lg mb-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Logotipo da Empresa" class="w-full h-full object-cover" data-alt="A modern, abstract corporate logo graphic featuring organic leaf-like shapes intersecting with clean geometric lines. The color palette is primarily deep forest green and vibrant neon lime green against a pure white background. The style is flat vector art, suitable for a tech-forward HR company. High contrast, professional, and crisp." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnQJCvssvlYPv2QjSLB4DHRLtDVg0AapXIfLNPna_ozM8u9Uf3pj67nq-hQ3s9GVPE_HaqXpKOBneXLUR6XBMJYoKMgVCwiPAlkoOA5rNUPs_uSZtJ3xgbahyVjEeLRFStF0p_uGs2VpIxDQHcWtuqY0Ne0ey1-2RPurk9Dxwh30zZu-pE1MtViK1rhcdItmLneSi-__ugAJMMXriw-O9eQ_2geE_b3Jx16UPhgRwe_A_DqQDhZ7-blJFbxzFFBvNxwBWzRkUxhpc"/>
+</div>
+<div>
+<div class="font-h3 text-h3 font-bold text-primary-fixed">TalentoVerde</div>
+<div class="font-label-caps text-label-caps text-secondary-fixed-dim mt-1">Recrutamento Tech</div>
+</div>
+</div>
+<div class="px-lg mb-lg">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-body-md text-body-md font-bold py-md px-md rounded-lg flex items-center justify-center gap-sm hover:bg-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                Nova Vaga
+            </button>
+</div>
+<div class="flex-1 flex flex-col gap-xs mt-md px-0">
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">work</span>
+                Vagas
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+                Candidatos
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                Entrevistas
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                Testes
+            </a>
+<!-- Using Settings as the active state to represent the AI tool being a specialized feature, though 'Testes' could also be argued. Sticking to 'Testes' as it's more analytical -->
+<a class="flex items-center gap-md px-md py-sm border-l-4 border-primary-fixed bg-on-secondary-fixed-variant text-primary-fixed font-bold hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-0 rounded-r-none duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+                Chat IA
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Configurações
+            </a>
+</div>
+<div class="mt-auto px-0 pt-md">
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all ml-md rounded-l-lg duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Sair
+            </a>
+</div>
+</nav>
+<!-- Main Content Area Wrapper -->
+<div class="flex-1 flex flex-col ml-[280px] h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 border-b border-outline-variant flat no shadows flex justify-between items-center h-16 px-lg w-full z-10 shrink-0">
+<div class="flex items-center gap-xl h-full">
+<div class="font-h3 text-h3 text-primary font-bold">Portal de Recrutamento</div>
+<div class="flex gap-lg h-full pt-sm">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors transition-all duration-200 h-full flex items-center" href="#">Visão Geral</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors transition-all duration-200 h-full flex items-center" href="#">Relatórios</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant border border-outline-variant overflow-hidden ml-sm cursor-pointer hover:border-primary transition-colors">
+<img alt="Avatar do Recrutador" class="w-full h-full object-cover" data-alt="A professional headshot of a confident female tech recruiter in her 30s. She is smiling warmly at the camera. Soft, natural light illuminates her face. The background is a slightly blurred modern office setting with hints of greenery. The overall mood is approachable, competent, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBXmOebzT1sRR5cvVNYMmD2Ljq-3RhD8Hs-b4_ch2T0dkRq9m9BI0VsKXLOjFvaxUciXHPJ1Wji3gkb2WxxAWaWS46CyRySEIYO3iuPzLBOTk0F8B0jYfLcQhU2wWZ8YgzljCr95VSJPldKsFFzPRAY8ugNkS-Sv2AW6H3UyQWRQBlUmCVX1TqsgKWRc66pDgAD_bO9UqQYnTqiInfjBTmB8xcdH-nWCnMEXbsz9uHVsBheWk5YuRfnczPRm_qAa4F3Et83cM7yLE"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex overflow-hidden bg-surface-container-low p-lg gap-lg">
+<!-- Chat Window (70%) -->
+<div class="w-[70%] flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_4px_12px_rgba(74,84,82,0.08)] overflow-hidden">
+<!-- Chat Header -->
+<div class="px-lg py-md border-b border-surface-variant flex items-center justify-between shrink-0">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<h2 class="font-h3 text-h3 text-on-surface">Assistente IA de Recrutamento</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Análise de currículos, elaboração de perguntas e insights.</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto p-lg custom-scrollbar flex flex-col gap-lg">
+<!-- AI Welcome Message -->
+<div class="flex gap-md w-full max-w-3xl">
+<div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-on-primary mt-1">
+<span class="material-symbols-outlined text-sm">psychology</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl rounded-tl-none p-md text-on-surface">
+<p class="font-body-md text-body-md">Olá! Sou o Assistente de IA da TalentoVerde. Como posso ajudar você na sua jornada de recrutamento hoje?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-md w-full max-w-3xl self-end flex-row-reverse">
+<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 border border-outline-variant mt-1">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a confident female tech recruiter in her 30s. She is smiling warmly at the camera. Soft, natural light illuminates her face. The background is a slightly blurred modern office setting with hints of greenery. The overall mood is approachable, competent, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzfjimK5EUEkL0SXSVy6pX6b1Tc-mqW_l31CKHxvWI89Y_DrzhmgLfZzY6L9NIW8K-HGJG3tepzKWNGDzhYY2skFpvAZZHT_xsPIrCU0NQxRtwR1LXjeXGa40FXxvevwP881vjcYmkTfKPdSvnfR1L6XyIhhzE0JWhBrDkAfvFQ92aikIXWGANUyeTr6D35MhAXopaVbSdZChVgVo9L9u525VfgbCPIVWrWqm5YN2kuO3NZNjsI3y3eiYAupquBEW3QibrCrODQzo"/>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-2xl rounded-tr-none p-md">
+<p class="font-body-md text-body-md">Pode analisar os 3 últimos candidatos para a vaga de Desenvolvedor Front-end Pleno e sugerir perguntas técnicas focadas em React e performance?</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex gap-md w-full max-w-4xl">
+<div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-on-primary mt-1">
+<span class="material-symbols-outlined text-sm">psychology</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl rounded-tl-none p-md text-on-surface w-full">
+<p class="font-body-md text-body-md mb-md">Com base nos perfis dos candidatos (Ana S., João P., e Carlos M.), aqui estão sugestões de perguntas técnicas para a entrevista, focadas em React e otimização de performance, considerando que todos têm experiência prévia com grandes aplicações:</p>
+<div class="flex flex-col gap-sm">
+<div class="p-sm bg-surface rounded-lg border border-surface-variant flex gap-sm items-start">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Gestão de Estado em Larga Escala</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">"Considerando que usamos Redux Toolkit em nossa arquitetura, como você abordaria a refatoração de um componente complexo que atualmente sofre de re-renderizações desnecessárias devido a seletores mal otimizados?"</p>
+</div>
+</div>
+<div class="p-sm bg-surface rounded-lg border border-surface-variant flex gap-sm items-start">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Code Splitting &amp; Lazy Loading</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">"Qual sua estratégia para implementar lazy loading em rotas do React Router em um e-commerce para garantir que o bundle inicial (First Contentful Paint) permaneça abaixo de 150kb?"</p>
+</div>
+</div>
+<div class="p-sm bg-surface rounded-lg border border-surface-variant flex gap-sm items-start">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Hooks Customizados (Para Ana S.)</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">"Ana, vi que você criou bibliotecas internas na sua última empresa. Pode explicar como você estruturaria um hook customizado `useDataFetch` que lidasse perfeitamente com race conditions, cache e cancelamento de requisições?"</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input Area -->
+<div class="p-md border-t border-surface-variant bg-surface shrink-0">
+<div class="relative bg-surface-container-lowest rounded-xl border border-outline-variant focus-within:border-primary-fixed focus-within:ring-1 focus-within:ring-primary-fixed transition-all overflow-hidden flex flex-col">
+<textarea class="w-full bg-transparent border-none resize-none focus:ring-0 font-body-md text-body-md text-on-surface p-md min-h-[80px] custom-scrollbar" placeholder="Faça uma pergunta sobre candidatos, vagas, métricas..."></textarea>
+<div class="flex justify-between items-center px-md pb-sm">
+<div class="flex gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined text-xl">attach_file</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined text-xl">mic</span>
+</button>
+</div>
+<button class="bg-primary-fixed text-on-primary-fixed p-2 rounded-full hover:bg-primary-fixed-dim transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Context Panel (30%) -->
+<div class="w-[30%] flex flex-col gap-lg overflow-y-auto custom-scrollbar pr-xs">
+<!-- Current Context Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)] p-md">
+<div class="font-label-caps text-label-caps text-outline mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                        CONTEXTO ATUAL
+                    </div>
+<div class="flex flex-col gap-md">
+<div>
+<div class="font-body-md text-body-md font-bold text-on-surface">Vaga Ativa Selecionada</div>
+<div class="font-body-md text-body-md text-primary mt-xs cursor-pointer hover:underline">Desenvolvedor Front-end Pleno</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface rounded-lg p-sm border border-surface-variant">
+<div class="font-label-caps text-label-caps text-on-surface-variant">CANDIDATOS</div>
+<div class="font-h3 text-h3 text-on-surface mt-xs">42</div>
+</div>
+<div class="bg-surface rounded-lg p-sm border border-surface-variant">
+<div class="font-label-caps text-label-caps text-on-surface-variant">EM FASE TÉCNICA</div>
+<div class="font-h3 text-h3 text-on-surface mt-xs">8</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Suggested Actions Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-[#D6B48B] shadow-[0px_4px_12px_rgba(74,84,82,0.08)] p-md flex-1">
+<div class="font-label-caps text-label-caps text-outline mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+                        SUGESTÕES DA IA
+                    </div>
+<div class="flex flex-col gap-sm">
+<button class="text-left w-full p-sm rounded-lg bg-surface hover:bg-surface-variant border border-surface-variant transition-colors group flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg shrink-0 group-hover:text-primary transition-colors">summarize</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Resumir os pontos fortes da candidata Ana S.</span>
+</button>
+<button class="text-left w-full p-sm rounded-lg bg-surface hover:bg-surface-variant border border-surface-variant transition-colors group flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg shrink-0 group-hover:text-primary transition-colors">mail</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Rascunhar e-mail de feedback positivo para a próxima fase.</span>
+</button>
+<button class="text-left w-full p-sm rounded-lg bg-surface hover:bg-surface-variant border border-surface-variant transition-colors group flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg shrink-0 group-hover:text-primary transition-colors">analytics</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Comparar requisitos da vaga com o perfil médio dos aplicantes.</span>
+</button>
+<button class="text-left w-full p-sm rounded-lg bg-surface hover:bg-surface-variant border border-surface-variant transition-colors group flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg shrink-0 group-hover:text-primary transition-colors">schedule</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Sugerir roteiro de entrevista de 45 minutos.</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

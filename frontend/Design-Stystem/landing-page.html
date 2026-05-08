@@ -1,0 +1,532 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TalentoVerde - Recrutamento Tech</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#816642",
+              "on-primary-container": "#527500",
+              "inverse-on-surface": "#eff2eb",
+              "secondary-container": "#d0ebb9",
+              "surface-dim": "#d9dbd4",
+              "surface-container": "#edefe8",
+              "inverse-primary": "#a0d832",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c18",
+              "on-background": "#191c18",
+              "on-secondary-fixed": "#0d2003",
+              "tertiary-fixed": "#ffddb5",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#e1e3dc",
+              "on-surface-variant": "#434936",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#b5cf9f",
+              "on-tertiary-fixed": "#2a1800",
+              "tertiary-fixed-dim": "#e4c197",
+              "surface-container-high": "#e7e9e2",
+              error: "#ba1a1a",
+              "tertiary-container": "#ffe9d2",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              "primary-fixed": "#bbf54e",
+              "surface-bright": "#f8faf3",
+              "on-secondary-fixed-variant": "#374d28",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2e312d",
+              surface: "#f8faf3",
+              "primary-fixed-dim": "#a0d832",
+              "on-primary-fixed": "#131f00",
+              tertiary: "#745a37",
+              primary: "#486800",
+              "on-secondary-container": "#546b43",
+              secondary: "#4e653e",
+              "surface-variant": "#e1e3dc",
+              "surface-container-low": "#f2f4ed",
+              "primary-container": "#c4ff57",
+              background: "#f8faf3",
+              outline: "#737a64",
+              "surface-tint": "#486800",
+              "on-primary-fixed-variant": "#354e00",
+              "secondary-fixed": "#d0ebb9",
+              "outline-variant": "#c3c9b0",
+              "on-tertiary-fixed-variant": "#5a4222",
+              "on-error": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              sm: "8px",
+              lg: "24px",
+              xs: "4px",
+              "container-padding": "40px",
+              md: "16px",
+              gutter: "20px",
+              base: "4px",
+              xl: "32px",
+            },
+            fontFamily: {
+              h3: ["Inter"],
+              h2: ["Inter"],
+              "body-md": ["Inter"],
+              "label-caps": ["Inter"],
+              "body-lg": ["Inter"],
+              h1: ["Inter"],
+            },
+            fontSize: {
+              h3: ["24px", { lineHeight: "1.3", fontWeight: "700" }],
+              h2: [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "label-caps": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "700" },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              h1: [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- Marketing Navigation (Simplified, omitting dashboard shell per rules) -->
+    <header
+      class="w-full max-w-[1440px] mx-auto px-lg py-md flex justify-between items-center relative z-10"
+    >
+      <div class="flex items-center gap-sm">
+        <span
+          class="material-symbols-outlined text-primary text-[32px]"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >eco</span
+        >
+        <span class="font-h3 text-h3 text-primary">TalentoVerde</span>
+      </div>
+      <nav class="hidden md:flex gap-lg items-center">
+        <a
+          class="text-on-surface hover:text-primary transition-colors font-label-caps text-label-caps uppercase"
+          href="#"
+          >Soluções</a
+        >
+        <a
+          class="text-on-surface hover:text-primary transition-colors font-label-caps text-label-caps uppercase"
+          href="#"
+          >Preços</a
+        >
+        <a
+          class="border border-outline-variant rounded-full px-lg py-sm font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors"
+          href="#"
+          >Entrar</a
+        >
+      </nav>
+    </header>
+    <main class="w-full max-w-[1440px] mx-auto overflow-hidden">
+      <!-- 1. Hero Section -->
+      <section
+        class="px-lg py-xl md:py-[80px] grid grid-cols-1 gap-xl items-center relative"
+      >
+        <!-- Decorative Background Element -->
+        <div
+          class="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-br from-surface-container to-background -z-10 rounded-b-[40px] md:rounded-br-[120px]"
+        ></div>
+        <div
+          class="flex flex-col gap-lg z-10 items-center text-center mx-auto max-w-5xl mx-auto items-center text-center"
+        >
+          <span
+            class="font-label-caps text-label-caps uppercase text-primary border border-outline-variant bg-surface-container-lowest rounded-full px-md py-xs mx-auto"
+            >IA + RH</span
+          >
+          <h1
+            class="font-h1 text-h1 text-on-surface max-w-5xl mx-auto max-w-5xl mx-auto text-center"
+          >
+            Recrutamento inteligente que entende o DNA da sua empresa
+          </h1>
+          <p
+            class="font-body-lg text-body-lg text-on-surface-variant max-w-5xl mx-auto max-w-5xl mx-auto text-center"
+          >
+            Conecte-se aos melhores talentos tech através de nossa IA avançada.
+            Realizamos análises DISC e match cultural para garantir não apenas a
+            capacidade técnica, mas a aderência perfeita ao seu time.
+          </p>
+          <div
+            class="flex flex-col gap-md mt-sm sm:flex-row justify-center max-w-5xl mx-auto justify-center"
+          >
+            <button
+              class="bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-lg py-md rounded-full shadow-[0px_4px_12px_rgba(74,84,82,0.08)] hover:brightness-105 transition-all w-full sm:w-auto text-center"
+            >
+              Começar Agora
+            </button>
+            <button
+              class="bg-surface-container-lowest border border-outline-variant text-on-surface font-label-caps text-label-caps uppercase px-lg py-md rounded-full hover:bg-surface-variant transition-all w-full sm:w-auto text-center flex items-center justify-center gap-xs"
+            >
+              Ver Demonstração
+              <span class="material-symbols-outlined text-[16px]"
+                >play_circle</span
+              >
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- 2. Value Props -->
+      <section class="px-lg py-xl mt-xl">
+        <div class="text-center mb-xl">
+          <h2 class="font-h2 text-h2 text-on-surface mb-md">
+            Nossa Metodologia
+          </h2>
+          <p
+            class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto"
+          >
+            Combinamos tecnologia de ponta com profunda compreensão do
+            comportamento humano para transformar sua jornada de contratação.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+          <!-- Card 1 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0px_4px_12px_rgba(74,84,82,0.08)] flex flex-col gap-md hover:-translate-y-1 transition-transform duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center mb-sm"
+            >
+              <span
+                class="material-symbols-outlined text-on-secondary-container text-[28px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >psychology</span
+              >
+            </div>
+            <h3 class="font-h3 text-h3 text-on-surface">Match de Cultura</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Utilizamos avaliações baseadas em perfis DISC para garantir que o
+              candidato prosperará no ambiente e nos valores específicos da sua
+              equipe.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0px_4px_12px_rgba(74,84,82,0.08)] flex flex-col gap-md hover:-translate-y-1 transition-transform duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-tertiary-container flex items-center justify-center mb-sm"
+            >
+              <span
+                class="material-symbols-outlined text-on-tertiary-container text-[28px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >view_kanban</span
+              >
+            </div>
+            <h3 class="font-h3 text-h3 text-on-surface">
+              Pipeline Automatizado
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Gerencie todo o fluxo de candidatos em painéis Kanban eficientes.
+              Reduza o tempo de triagem e foque em entrevistas de qualidade.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0px_4px_12px_rgba(74,84,82,0.08)] flex flex-col gap-md hover:-translate-y-1 transition-transform duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-primary-container flex items-center justify-center mb-sm"
+            >
+              <span
+                class="material-symbols-outlined text-on-primary-container text-[28px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >smart_toy</span
+              >
+            </div>
+            <h3 class="font-h3 text-h3 text-on-surface">IA de Recrutamento</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Gere descrições de vagas otimizadas e realize a triagem inicial de
+              currículos automaticamente com nossa inteligência artificial
+              treinada para tech.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- 3. Social Proof/Stats -->
+      <section
+        class="mt-xl py-xl bg-on-secondary-fixed-variant rounded-lg mx-lg my-xl relative overflow-hidden"
+      >
+        <!-- Subtle background texture/pattern concept using radial gradients -->
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(196,255,87,0.1),transparent_50%)]"
+        ></div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-lg divide-y md:divide-y-0 md:divide-x divide-outline px-lg relative z-10"
+        >
+          <div
+            class="flex flex-col items-center justify-center py-md text-center"
+          >
+            <span class="font-h1 text-h1 text-primary-container mb-xs"
+              >14+</span
+            >
+            <span
+              class="font-label-caps text-label-caps text-surface uppercase tracking-wider"
+              >Vagas Abertas Hoje</span
+            >
+          </div>
+          <div
+            class="flex flex-col items-center justify-center py-md text-center"
+          >
+            <span class="font-h1 text-h1 text-primary-container mb-xs"
+              >287+</span
+            >
+            <span
+              class="font-label-caps text-label-caps text-surface uppercase tracking-wider"
+              >Candidatos Ativos</span
+            >
+          </div>
+          <div
+            class="flex flex-col items-center justify-center py-md text-center"
+          >
+            <span class="font-h1 text-h1 text-primary-container mb-xs"
+              >92%</span
+            >
+            <span
+              class="font-label-caps text-label-caps text-surface uppercase tracking-wider"
+              >Precisão de Match</span
+            >
+          </div>
+        </div>
+      </section>
+      <!-- 4. Features Showcase -->
+      <section
+        class="px-lg py-xl grid grid-cols-1 lg:grid-cols-2 gap-xl items-center"
+      >
+        <div
+          class="order-2 lg:order-1 relative p-lg md:p-xl bg-surface-container rounded-xl border border-outline-variant"
+        >
+          <!-- Mock Interface Snippet -->
+          <div
+            class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-[0px_4px_12px_rgba(74,84,82,0.08)] p-lg flex flex-col gap-md relative"
+          >
+            <div
+              class="flex justify-between items-start border-b border-outline-variant pb-md"
+            >
+              <div class="flex items-center gap-md">
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden border border-outline-variant"
+                >
+                  <img
+                    alt="Avatar Candidato"
+                    class="w-full h-full object-cover"
+                    data-alt="A professional headshot of a confident tech candidate. The portrait features a clean, minimal, off-white background (#F5F7F0) with soft studio lighting that emphasizes natural skin tones and approachability. The subject is wearing modern smart-casual attire. The image style strictly adheres to the Corporate Modern aesthetic, maintaining a high-quality, authentic look suitable for a premium recruitment platform."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_X5cBUZjlZlcqWO2HDOPc9WtDqfbxhLhODIgfHo3_npnsrvnj-LXxqlKRMeJMDnXMdie3-S6VDBL8QsJJB5QefgletFMO1f2fG6kK0vFTS3qjX0N49kDTnnQY4M7p_p8W6g0QTbiDGX_zZ95ubqdim78Aok8hRC7A3CFQlfBGW9m9XMJEx8xIB_UlpsYcZMo1UJzLs5LqAeF0WK8CczroGh0Yv7rLaspFIjgjbCK7scpLp2G0ewrl0pkZpWaitI4xrRyXwLJs8R8"
+                  />
+                </div>
+                <div>
+                  <h4 class="font-h3 text-body-lg font-bold text-on-surface">
+                    Lucas Silva
+                  </h4>
+                  <p
+                    class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                  >
+                    Engenheiro Front-end
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bg-primary-container px-sm py-xs rounded-full flex items-center gap-xs"
+              >
+                <span
+                  class="material-symbols-outlined text-[16px] text-on-primary-container"
+                  >star</span
+                >
+                <span
+                  class="font-label-caps text-label-caps text-on-primary-container"
+                  >Top Match</span
+                >
+              </div>
+            </div>
+            <div>
+              <h5
+                class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-md"
+              >
+                Score de Alinhamento
+              </h5>
+              <!-- Progress Bars representing DISC/Match -->
+              <div class="flex flex-col gap-sm">
+                <div>
+                  <div class="flex justify-between mb-xs">
+                    <span class="font-body-md text-label-caps text-on-surface"
+                      >Técnico (React/TS)</span
+                    >
+                    <span
+                      class="font-body-md text-label-caps font-bold text-on-surface"
+                      >95%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
+                  >
+                    <div class="bg-secondary h-full" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-xs">
+                    <span class="font-body-md text-label-caps text-on-surface"
+                      >Cultura (Perfil 'I' DISC)</span
+                    >
+                    <span
+                      class="font-body-md text-label-caps font-bold text-on-surface"
+                      >88%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
+                  >
+                    <div class="bg-primary h-full" style="width: 88%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-xs">
+                    <span class="font-body-md text-label-caps text-on-surface"
+                      >Senioridade (Liderança)</span
+                    >
+                    <span
+                      class="font-body-md text-label-caps font-bold text-on-surface"
+                      >90%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
+                  >
+                    <div class="bg-tertiary h-full" style="width: 90%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 flex flex-col gap-md">
+          <span
+            class="font-label-caps text-label-caps uppercase text-primary tracking-widest"
+            >Análise Profunda</span
+          >
+          <h2 class="font-h2 text-h2 text-on-surface">
+            Vá além do currículo padrão
+          </h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant">
+            Nossa plataforma processa milhares de pontos de dados para gerar um
+            <strong>Score de Alinhamento</strong> holístico. Avaliamos não
+            apenas a stack tecnológica, mas traços comportamentais, aderência
+            aos ritos da empresa e potencial de liderança através da metodologia
+            DISC integrada.
+          </p>
+          <ul class="mt-sm flex flex-col gap-sm">
+            <li class="flex items-start gap-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-primary">check</span>
+              <span class="font-body-md text-body-md"
+                >Mapeamento comportamental automático</span
+              >
+            </li>
+            <li class="flex items-start gap-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-primary">check</span>
+              <span class="font-body-md text-body-md"
+                >Validação técnica por IA generativa</span
+              >
+            </li>
+            <li class="flex items-start gap-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-primary">check</span>
+              <span class="font-body-md text-body-md"
+                >Comparativo de cultura entre time atual e candidato</span
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- 5. Final CTA -->
+      <section class="px-lg py-xl mt-lg mb-xl max-w-4xl mx-auto text-center">
+        <div
+          class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl shadow-[0px_4px_12px_rgba(74,84,82,0.08)] flex flex-col items-center gap-lg"
+        >
+          <div
+            class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-xs"
+          >
+            <span
+              class="material-symbols-outlined text-[32px] text-on-primary-container"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >rocket_launch</span
+            >
+          </div>
+          <h2 class="font-h2 text-h2 text-on-surface">
+            Transforme seu RH hoje
+          </h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            Junte-se a centenas de empresas inovadoras no Brasil que estão
+            contratando de forma mais rápida, inteligente e com maior retenção a
+            longo prazo.
+          </p>
+          <form class="w-full max-w-md flex flex-col sm:flex-row gap-sm mt-md">
+            <input
+              class="flex-1 bg-background border border-outline-variant text-on-surface font-body-md px-md py-sm rounded-lg focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-colors placeholder:text-on-surface-variant/50"
+              placeholder="Seu e-mail corporativo"
+              type="email"
+            />
+            <button
+              class="bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-lg py-sm rounded-lg hover:brightness-105 transition-all whitespace-nowrap shadow-[0px_4px_12px_rgba(74,84,82,0.08)]"
+              type="button"
+            >
+              Solicitar Acesso
+            </button>
+          </form>
+          <p
+            class="font-label-caps text-label-caps text-on-surface-variant uppercase opacity-70 mt-xs"
+          >
+            Sem necessidade de cartão de crédito. Teste grátis por 14 dias.
+          </p>
+        </div>
+      </section>
+      <!-- Footer (Basic) -->
+      <footer
+        class="border-t border-outline-variant py-lg px-lg mt-xl text-center"
+      >
+        <p
+          class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+        >
+          © 2024 TalentoVerde. O DNA do Recrutamento Tech.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

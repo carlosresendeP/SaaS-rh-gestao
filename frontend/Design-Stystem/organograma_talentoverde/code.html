@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TalentoVerde - Organograma</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffddb5",
+                        "tertiary-fixed-dim": "#e4c197",
+                        "surface-tint": "#486800",
+                        "primary-fixed-dim": "#a0d832",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff2eb",
+                        "on-surface-variant": "#434936",
+                        "primary-container": "#c4ff57",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e9e2",
+                        "surface-container-low": "#f2f4ed",
+                        "on-secondary-fixed": "#0d2003",
+                        "secondary": "#4e653e",
+                        "secondary-container": "#d0ebb9",
+                        "primary-fixed": "#bbf54e",
+                        "tertiary-container": "#ffe9d2",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#374d28",
+                        "on-surface": "#191c18",
+                        "inverse-primary": "#a0d832",
+                        "on-background": "#191c18",
+                        "surface-variant": "#e1e3dc",
+                        "outline": "#737a64",
+                        "on-primary-container": "#527500",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8faf3",
+                        "on-primary-fixed": "#131f00",
+                        "surface-dim": "#d9dbd4",
+                        "surface-container-highest": "#e1e3dc",
+                        "secondary-fixed": "#d0ebb9",
+                        "primary": "#486800",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e312d",
+                        "surface-container": "#edefe8",
+                        "background": "#f8faf3",
+                        "on-primary-fixed-variant": "#354e00",
+                        "surface": "#f8faf3",
+                        "on-tertiary-container": "#816642",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#b5cf9f",
+                        "on-tertiary-fixed": "#2a1800",
+                        "outline-variant": "#c3c9b0",
+                        "on-tertiary-fixed-variant": "#5a4222",
+                        "tertiary": "#745a37",
+                        "on-secondary-container": "#546b43",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "container-padding": "40px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .tree-line-h::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 1px;
+            background-color: theme('colors.outline-variant');
+        }
+        .tree-line-h-left::before {
+            left: 50%;
+            width: 50%;
+        }
+        .tree-line-h-right::before {
+            left: 0;
+            width: 50%;
+        }
+        .tree-line-v::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 24px;
+            background-color: theme('colors.outline-variant');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-secondary flex flex-col py-lg z-50">
+<div class="px-lg mb-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+</div>
+<div>
+<div class="font-h3 text-h3 font-bold text-primary-fixed">TalentoVerde</div>
+<div class="font-label-caps text-label-caps text-surface-variant opacity-80 mt-xs">Recrutamento Tech</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto mt-md">
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all mx-sm rounded" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all mx-sm rounded" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                Vagas
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all mx-sm rounded" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Candidatos
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all mx-sm rounded" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                Entrevistas
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all mx-sm rounded" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                Testes
+            </a>
+<a class="flex items-center gap-md px-md py-sm border-l-4 border-primary-fixed bg-on-secondary-fixed-variant text-primary-fixed font-bold mx-sm rounded-r" href="#">
+<span class="material-symbols-outlined" data-icon="settings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span>
+                Configurações
+            </a>
+</div>
+<div class="px-lg mt-auto">
+<button class="w-full flex items-center justify-center gap-sm bg-primary-fixed text-on-primary-fixed font-bold py-sm rounded-lg hover:bg-primary-container transition-colors shadow-[0px_4px_12px_rgba(74,84,82,0.08)] mb-xl">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Nova Vaga
+            </button>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all mx-sm rounded" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Sair
+            </a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="docked full-width top-0 bg-surface border-b border-outline-variant flat no shadows flex justify-between items-center h-16 ml-[280px] px-lg w-[calc(100%-280px)] z-40 fixed">
+<div class="flex items-center gap-xl">
+<div class="font-h3 text-h3 text-primary">Portal de Recrutamento</div>
+<nav class="hidden md:flex gap-md">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors py-sm" href="#">Visão Geral</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors py-sm" href="#">Relatórios</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="Avatar do Recrutador" class="w-full h-full object-cover" data-alt="Um retrato profissional de um homem de meia-idade usando um terno cinza moderno e camisa branca, sorrindo de forma acolhedora. O fundo é um escritório claro e iluminado, reforçando uma estética corporativa contemporânea e confiável. A iluminação é suave e natural." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlUaxndj-I6pVJ-52AY_eMZH3ySgcAxU_mX_nnq_4up3h0Rau_-qTj1xT_-I4uUDl_2aHFfsuK5KjwSYS82UaaQRWtqYe_lwsH04PCc3wpiHRzsbQCh33R_bRXv9fmYdhmPkvycFcZpKhCqKF35f-k6CJuqiasrN3R3myadpYtUMfYGhqJxWZYjthvvSOrOYn16SqNshjUehEZz89scT92AJKY5kEXJsbgybJJn68BUgJZGUQLJJXIwsdP2u4LHLUmBuGNQj2Dx64"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[280px] mt-16 flex h-[calc(100vh-64px)] w-[calc(100%-280px)] bg-background">
+<!-- Canvas Area (Left) -->
+<div class="flex-1 flex flex-col relative overflow-hidden bg-surface-container-low">
+<!-- Canvas Toolbar -->
+<div class="h-16 border-b border-outline-variant bg-surface flex items-center justify-between px-lg shrink-0 z-10">
+<h1 class="font-h3 text-h3 text-on-surface">Organograma</h1>
+<div class="flex items-center gap-md">
+<div class="flex items-center bg-surface-container border border-outline-variant rounded-lg p-xs">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:bg-surface-bright rounded transition-colors" title="Diminuir zoom">
+<span class="material-symbols-outlined" data-icon="zoom_out">zoom_out</span>
+</button>
+<span class="font-label-caps text-label-caps text-on-surface px-sm w-12 text-center">100%</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:bg-surface-bright rounded transition-colors" title="Aumentar zoom">
+<span class="material-symbols-outlined" data-icon="zoom_in">zoom_in</span>
+</button>
+<div class="w-px h-4 bg-outline-variant mx-xs"></div>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:bg-surface-bright rounded transition-colors" title="Ajustar à tela">
+<span class="material-symbols-outlined" data-icon="fit_screen">fit_screen</span>
+</button>
+</div>
+<button class="flex items-center gap-xs bg-primary-fixed text-on-primary-fixed px-md py-sm rounded-lg font-bold hover:bg-primary-container transition-colors shadow-[0px_4px_12px_rgba(74,84,82,0.08)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                        Adicionar Posição
+                    </button>
+</div>
+</div>
+<!-- Interactive Canvas -->
+<div class="flex-1 overflow-auto p-xl relative cursor-grab active:cursor-grabbing">
+<div class="min-w-max min-h-max flex justify-center py-xl">
+<!-- Root Node -->
+<div class="flex flex-col items-center">
+<div class="w-64 bg-secondary text-on-secondary rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant/30 cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all">
+<div class="font-label-caps text-label-caps opacity-80 mb-xs">DIRETORIA</div>
+<div class="font-body-lg text-body-lg font-bold">Mariana Silva</div>
+<div class="font-body-md text-body-md opacity-90">CEO</div>
+</div>
+<!-- Line down from root -->
+<div class="w-px h-10 bg-outline-variant"></div>
+<!-- Mid Level Container -->
+<div class="flex relative">
+<!-- Horizontal connecting line for Mid level -->
+<div class="absolute top-0 left-[25%] right-[25%] h-px bg-outline-variant"></div>
+<!-- Mid Node 1 (Tech) -->
+<div class="flex flex-col items-center px-xl relative">
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="w-56 bg-secondary-fixed-dim text-on-secondary-container rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all">
+<div class="font-label-caps text-label-caps opacity-80 mb-xs">TECNOLOGIA</div>
+<div class="font-body-lg text-body-lg font-bold">Carlos Eduardo</div>
+<div class="font-body-md text-body-md opacity-90">CTO</div>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<!-- Leaf Level Container -->
+<div class="flex relative">
+<div class="absolute top-0 left-[25%] right-[25%] h-px bg-outline-variant"></div>
+<!-- Leaf Node 1.1 -->
+<div class="flex flex-col items-center px-md relative">
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="w-48 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all">
+<div class="font-body-lg text-body-lg font-bold">Ana Beatriz</div>
+<div class="font-body-md text-body-md opacity-90">Líder de Backend</div>
+</div>
+</div>
+<!-- Leaf Node 1.2 -->
+<div class="flex flex-col items-center px-md relative">
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="w-48 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all ring-2 ring-primary-fixed">
+<div class="font-body-lg text-body-lg font-bold">João Pedro</div>
+<div class="font-body-md text-body-md opacity-90">Líder de Frontend</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mid Node 2 (Product) -->
+<div class="flex flex-col items-center px-xl relative">
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="w-56 bg-secondary-fixed-dim text-on-secondary-container rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all">
+<div class="font-label-caps text-label-caps opacity-80 mb-xs">PRODUTO</div>
+<div class="font-body-lg text-body-lg font-bold">Fernanda Lima</div>
+<div class="font-body-md text-body-md opacity-90">CPO</div>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<!-- Leaf Level Container -->
+<div class="flex relative">
+<div class="absolute top-0 left-[25%] right-[25%] h-px bg-outline-variant"></div>
+<!-- Leaf Node 2.1 -->
+<div class="flex flex-col items-center px-md relative">
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="w-48 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all">
+<div class="font-body-lg text-body-lg font-bold">Vaga Aberta</div>
+<div class="font-body-md text-body-md opacity-90">PM Sênior</div>
+</div>
+</div>
+<!-- Leaf Node 2.2 -->
+<div class="flex flex-col items-center px-md relative">
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="w-48 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl p-md shadow-[0px_4px_12px_rgba(74,84,82,0.08)] relative z-10 border border-outline-variant cursor-pointer hover:ring-2 hover:ring-primary-fixed transition-all">
+<div class="font-body-lg text-body-lg font-bold">Lucas Mendes</div>
+<div class="font-body-md text-body-md opacity-90">Product Designer</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel (Editor) -->
+<aside class="w-80 bg-surface-container-lowest border-l border-outline-variant flex flex-col shrink-0 z-20 shadow-[-4px_0_12px_rgba(74,84,82,0.05)]">
+<div class="h-16 border-b border-outline-variant flex items-center justify-between px-lg">
+<h2 class="font-h3 text-h3 text-on-surface">Editar Posição</h2>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-lg space-y-lg">
+<!-- Profile Snippet -->
+<div class="flex items-center gap-md p-md bg-tertiary-container rounded-lg border border-tertiary-fixed-dim">
+<div class="w-12 h-12 rounded-full bg-surface overflow-hidden shrink-0">
+<img alt="Foto João Pedro" class="w-full h-full object-cover" data-alt="Um retrato de um homem jovem de negócios, sorrindo levemente. Ele veste uma camisa azul clara. O fundo é neutro e desfocado, com iluminação suave, transmitindo profissionalismo e acessibilidade dentro de um ambiente corporativo moderno." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwp6jO8fnxtENH_-iPPPxRXuvWlEaQrUdutX3GE2Jn4ttEwIRYcTsNRDqomOIFZ9BvSlYAB1eUciYxUpPGQ35gv4b9MTbQnbeMCiDWsNc_A97U3lN_slrSXVag9nrsoCVvWrvDHiNFdBum6fwOlOKQgO3vkrRRU1qD_EWyCksZRad1iTv_E5pSvLG11etvCvFHUsaKSk8j2hUZsXEuiwPZL9qpv28VItKxECsxcYA3n5L8rD3UrxVrKBhQ_E4RYEK_05wTELVMDEI"/>
+</div>
+<div>
+<div class="font-body-lg text-body-lg font-bold text-on-tertiary-container">João Pedro</div>
+<div class="font-label-caps text-label-caps text-on-tertiary-container opacity-80 mt-xs">Líder de Frontend</div>
+</div>
+</div>
+<!-- Form -->
+<form class="space-y-md">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">NOME DO COLABORADOR</label>
+<input class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm text-body-md text-on-surface focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed outline-none transition-all" type="text" value="João Pedro"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">CARGO</label>
+<input class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm text-body-md text-on-surface focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed outline-none transition-all" type="text" value="Líder de Frontend"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">DEPARTAMENTO</label>
+<select class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm text-body-md text-on-surface focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed outline-none transition-all appearance-none cursor-pointer">
+<option selected="" value="tecnologia">Tecnologia</option>
+<option value="produto">Produto</option>
+<option value="rh">Recursos Humanos</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">REPORTA A</label>
+<select class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm text-body-md text-on-surface focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed outline-none transition-all appearance-none cursor-pointer">
+<option value="carlos">Carlos Eduardo (CTO)</option>
+<option value="mariana">Mariana Silva (CEO)</option>
+<option value="fernanda">Fernanda Lima (CPO)</option>
+</select>
+</div>
+<div class="pt-md border-t border-outline-variant">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">NÍVEL HIERÁRQUICO</label>
+<div class="flex gap-sm">
+<button class="flex-1 py-xs border border-outline-variant rounded bg-surface text-on-surface font-body-md hover:bg-surface-container transition-colors" type="button">C-Level</button>
+<button class="flex-1 py-xs border border-outline-variant rounded bg-surface text-on-surface font-body-md hover:bg-surface-container transition-colors" type="button">Mid</button>
+<button class="flex-1 py-xs border-2 border-primary-fixed rounded bg-tertiary-container text-on-tertiary-container font-body-md font-bold" type="button">Leaf</button>
+</div>
+</div>
+</form>
+</div>
+<div class="p-lg border-t border-outline-variant bg-surface space-y-md shrink-0">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-bold py-sm rounded-lg hover:bg-primary-container transition-colors shadow-[0px_4px_12px_rgba(74,84,82,0.08)]">
+                    Salvar Alterações
+                </button>
+<button class="w-full border border-outline-variant text-error font-body-md py-sm rounded-lg hover:bg-error-container transition-colors bg-surface-bright">
+                    Excluir Posição
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

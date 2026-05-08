@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil do Candidato - TalentoVerde</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffddb5",
+                        "tertiary-fixed-dim": "#e4c197",
+                        "surface-tint": "#486800",
+                        "primary-fixed-dim": "#a0d832",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff2eb",
+                        "on-surface-variant": "#434936",
+                        "primary-container": "#c4ff57",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e9e2",
+                        "surface-container-low": "#f2f4ed",
+                        "on-secondary-fixed": "#0d2003",
+                        "secondary": "#4e653e",
+                        "secondary-container": "#d0ebb9",
+                        "primary-fixed": "#bbf54e",
+                        "tertiary-container": "#ffe9d2",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#374d28",
+                        "on-surface": "#191c18",
+                        "inverse-primary": "#a0d832",
+                        "on-background": "#191c18",
+                        "surface-variant": "#e1e3dc",
+                        "outline": "#737a64",
+                        "on-primary-container": "#527500",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8faf3",
+                        "on-primary-fixed": "#131f00",
+                        "surface-dim": "#d9dbd4",
+                        "surface-container-highest": "#e1e3dc",
+                        "secondary-fixed": "#d0ebb9",
+                        "primary": "#486800",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e312d",
+                        "surface-container": "#edefe8",
+                        "background": "#f8faf3",
+                        "on-primary-fixed-variant": "#354e00",
+                        "surface": "#f8faf3",
+                        "on-tertiary-container": "#816642",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#b5cf9f",
+                        "on-tertiary-fixed": "#2a1800",
+                        "outline-variant": "#c3c9b0",
+                        "on-tertiary-fixed-variant": "#5a4222",
+                        "tertiary": "#745a37",
+                        "on-secondary-container": "#546b43",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "container-padding": "40px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow {
+            box-shadow: 0px 4px 12px rgba(74, 84, 82, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-secondary dark:bg-inverse-surface fixed left-0 top-0 h-full w-[280px] flex flex-col h-full py-lg z-50">
+<div class="px-lg mb-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold">
+                TV
+            </div>
+<div>
+<h1 class="font-h3 text-h3 font-bold text-primary-fixed">TalentoVerde</h1>
+<p class="font-label-caps text-label-caps text-surface-variant opacity-80 mt-1">Recrutamento Tech</p>
+</div>
+</div>
+<div class="px-md mb-xl">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-body-md text-body-md py-sm px-md rounded-lg hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
+                Nova Vaga
+            </button>
+</div>
+<ul class="flex-1 flex flex-col gap-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+<span class="font-body-md text-body-md">Vagas</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm border-l-4 border-primary-fixed bg-on-secondary-fixed-variant text-primary-fixed font-bold hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Candidatos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md">Entrevistas</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-body-md text-body-md">Testes</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Configurações</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto px-md">
+<a class="flex items-center gap-md px-md py-sm text-surface-variant opacity-80 hover:bg-on-secondary-fixed-variant hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Sair</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-[280px] flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 border-b border-outline-variant flat no shadows flex justify-between items-center h-16 px-lg z-40 sticky">
+<div class="flex items-center gap-lg">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg py-1 pl-10 pr-4 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-colors" placeholder="Buscar..." type="text"/>
+</div>
+<nav class="hidden md:flex gap-md">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors py-2" href="#">Visão Geral</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps hover:text-primary transition-colors py-2" href="#">Relatórios</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<img alt="Avatar do Recrutador" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional corporate portrait of a female recruiter smiling warmly. She has dark hair tied back and is wearing a modern green blazer over a white shirt. The background is a brightly lit, out-of-focus modern office setting, conveying a sense of corporate modern professionalism and interpersonal trust aligned with a nature-tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALifGc2i5p_fjfa8EgNk_-5VWDSr2yL1AIwMkipg7fn2UZU1o2yoazhw58aDisamDywrE5tBw_rOtoWx7aWsajRIx6dgyri4NwWCKZa2Z5tO_o3ZKPlP-PP1tc04l-Hhc267bFBkSTQ2JnwCqsKx08au6niAov89xd1SS0cBPdcLCPDVA9ScBQbCKFVGk4cxz8lQyHfe4e0JIvQ8usoqypxbSa6JQV0qyYJqDgmTbH7Z05xUcaIo8rpRQioCsXK9jdFPorFzKV1DE"/>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="flex-1 p-container-padding">
+<div class="flex items-center justify-between mb-xl">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface">Perfil do Candidato</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Desenvolvedor Frontend Sênior • São Paulo, SP</p>
+</div>
+<div class="flex gap-md">
+<button class="border border-tertiary-fixed-dim text-on-surface font-body-md text-body-md py-2 px-4 rounded-lg hover:bg-surface-container transition-colors">
+                        Rejeitar
+                    </button>
+<button class="bg-primary-fixed text-on-primary-fixed font-body-md text-body-md py-2 px-4 rounded-lg hover:bg-primary-fixed-dim transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                        Gerar Link de Teste
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-lg">
+<!-- Left Column (Candidate Card) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Profile Info -->
+<div class="bg-surface-container-lowest border border-[#D6B48B] rounded-xl p-lg custom-shadow">
+<div class="flex flex-col items-center text-center border-b border-outline-variant pb-md mb-md">
+<img alt="Foto do Candidato" class="w-24 h-24 rounded-full border-2 border-primary-fixed object-cover mb-md" data-alt="A professional headshot of a young male software developer. He is wearing a dark, casual button-down shirt and has short, neat hair. The background is a soft, warm neutral tone. The lighting is studio-quality, highlighting his face with a subtle, confident expression, fitting a modern corporate tech profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9SXrb0gqcaDdsEuPvu3GVtnj6t_9uCB7csOjOETTEG1tzDjO9nhDB0UWrrBL3n4SD-cGoA7PMmpiftRriEaHTec4Ji1t2QaHYvqDQAzP0JTR54YYp5S-xGjiyRzfUrWnpBrGwcz7XRT1uZi3HeUdlH_g_bgy0g9zM5P_AUgpI0JxrmLXOY3ifGDeK55jk62e-xPPP7fO_caHa92dFwKP4gC6CaAh-tiArT3YZAOGEArSNU_Dz7x_SibM_3A5Coth1BIZTMOm2kGA"/>
+<h3 class="font-h3 text-h3 text-on-surface">Lucas Silva</h3>
+<span class="inline-block bg-primary-fixed/20 text-on-surface font-label-caps text-label-caps py-1 px-3 rounded-full mt-2 border border-primary-fixed">AVANÇADO</span>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-outline" data-icon="mail">mail</span>
+                                lucas.silva@email.com
+                            </div>
+<div class="flex items-center gap-sm text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-outline" data-icon="phone">phone</span>
+                                +55 (11) 98765-4321
+                            </div>
+<div class="flex items-center gap-sm text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-outline" data-icon="link">link</span>
+<a class="text-primary hover:underline" href="#">LinkedIn Profile</a>
+</div>
+</div>
+<div class="mt-lg">
+<button class="w-full border border-[#D6B48B] text-on-surface font-body-md text-body-md py-2 px-4 rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                                Baixar Currículo
+                            </button>
+</div>
+</div>
+<!-- Behavioral Profile -->
+<div class="bg-surface-container-lowest border border-[#D6B48B] rounded-xl p-lg custom-shadow">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-md tracking-wider">PERFIL COMPORTAMENTAL</h4>
+<div class="flex flex-col items-center mb-md">
+<!-- Placeholder for DISC Radar Chart using CSS -->
+<div class="w-32 h-32 rounded-full border border-outline-variant relative flex items-center justify-center bg-surface-container-low mb-sm">
+<div class="absolute w-20 h-24 bg-primary/20" style="clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"></div>
+<span class="material-symbols-outlined text-outline absolute top-2" data-icon="psychology">psychology</span>
+</div>
+<div class="flex justify-center gap-4 text-xs font-body-md text-on-surface-variant">
+<span>D: 40%</span>
+<span>I: 75%</span>
+<span>S: 60%</span>
+<span>C: 30%</span>
+</div>
+</div>
+<div class="mt-md border-t border-outline-variant pt-md flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Eneagrama</span>
+<span class="bg-secondary/10 text-secondary font-label-caps text-label-caps py-1 px-3 rounded-full border border-secondary">TIPO 3 - REALIZADOR</span>
+</div>
+</div>
+<!-- AI Feedback -->
+<div class="bg-surface-container-lowest border border-[#D6B48B] rounded-xl p-lg custom-shadow">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm tracking-wider">NOTAS DA IA</h4>
+<textarea class="w-full h-32 bg-surface border border-outline-variant rounded-lg p-sm font-body-md text-body-md text-on-surface resize-none focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-colors" placeholder="Adicione observações ou deixe a IA resumir a entrevista...">Forte alinhamento com a cultura da empresa. Demonstra excelente comunicação, porém pode precisar de suporte inicial com a stack específica do projeto legacy.
+                        </textarea>
+</div>
+</div>
+<!-- Right Column (Application Timeline & Match) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
+<!-- Match Score Banner -->
+<div class="bg-gradient-to-r from-secondary to-on-primary-container rounded-xl p-lg flex items-center justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-fixed/20 rounded-full blur-2xl"></div>
+<div class="z-10 text-on-primary">
+<h3 class="font-h3 text-h3 mb-1">Score de Alinhamento</h3>
+<p class="font-body-md text-body-md opacity-90">Análise combinada de skills técnicas e fit cultural.</p>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center z-10">
+<!-- Circular Progress SVG placeholder -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="rgba(255,255,255,0.2)" stroke-width="8"></circle>
+<circle class="transition-all duration-1000" cx="50" cy="50" fill="none" r="45" stroke="#c4ff57" stroke-dasharray="282.7" stroke-dashoffset="39.5" stroke-width="8"></circle>
+</svg>
+<span class="absolute font-h2 text-h2 text-primary-container">86%</span>
+</div>
+</div>
+<!-- AI Analysis Accordion -->
+<div class="bg-surface-container-lowest border border-[#D6B48B] rounded-xl custom-shadow overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-bright cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<h4 class="font-label-caps text-label-caps text-on-surface tracking-wider">ANÁLISE DETALHADA DA IA</h4>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+<div class="p-lg grid grid-cols-1 md:grid-cols-2 gap-lg bg-surface">
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface flex items-center gap-2 mb-sm">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span> Pontos Fortes
+                                </h5>
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-2">
+<li>• Sólida experiência em React e TypeScript.</li>
+<li>• Histórico de liderança técnica em squads ágeis.</li>
+<li>• Boa capacidade de resolução de conflitos (perfil I/S).</li>
+</ul>
+</div>
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface flex items-center gap-2 mb-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Pontos de Atenção
+                                </h5>
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-2">
+<li>• Experiência limitada com infraestrutura AWS (requisito secundário).</li>
+<li>• Expectativa salarial no limite superior da faixa aprovada.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Application Timeline -->
+<div class="bg-surface-container-lowest border border-[#D6B48B] rounded-xl p-lg custom-shadow flex-1">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-lg tracking-wider">JORNADA DO CANDIDATO</h4>
+<div class="relative border-l-2 border-outline-variant ml-4 space-y-8 pb-4">
+<!-- Step 1 (Completed) -->
+<div class="relative pl-8">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface">Candidatura Recebida</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Via portal de carreiras.</p>
+</div>
+<span class="font-label-caps text-label-caps text-outline">12 OUT 2023</span>
+</div>
+</div>
+<!-- Step 2 (Completed) -->
+<div class="relative pl-8">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface">Triagem Automática (IA)</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Score inicial aprovado (82%).</p>
+</div>
+<span class="font-label-caps text-label-caps text-outline">12 OUT 2023</span>
+</div>
+</div>
+<!-- Step 3 (Completed) -->
+<div class="relative pl-8">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface">Entrevista RH</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Realizada com Ana Souza.</p>
+</div>
+<span class="font-label-caps text-label-caps text-outline">15 OUT 2023</span>
+</div>
+<div class="mt-3 p-3 bg-surface-container rounded-lg border border-outline-variant/30">
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">"Candidato muito articulado, demonstrou interesse genuíno na cultura da empresa."</p>
+</div>
+</div>
+<!-- Step 4 (Current) -->
+<div class="relative pl-8">
+<div class="absolute -left-[11px] top-1 w-5 h-5 bg-primary-fixed rounded-full border-4 border-surface-container-lowest shadow-[0_0_0_2px_#bbf54e]"></div>
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface">Teste Técnico</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Aguardando envio do link.</p>
+</div>
+<span class="font-label-caps text-label-caps text-primary-fixed-dim">HOJE</span>
+</div>
+<div class="mt-3">
+<button class="bg-primary-fixed text-on-primary-fixed font-body-md text-body-md py-1.5 px-3 rounded-lg hover:bg-primary-fixed-dim transition-colors text-sm flex items-center gap-1">
+                                        Enviar Teste Agora <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 5 (Future) -->
+<div class="relative pl-8 opacity-50">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-surface-container-highest rounded-full border-2 border-outline-variant"></div>
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+<div>
+<h5 class="font-body-md text-body-md font-bold text-on-surface">Entrevista Gestor</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">A ser agendada.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

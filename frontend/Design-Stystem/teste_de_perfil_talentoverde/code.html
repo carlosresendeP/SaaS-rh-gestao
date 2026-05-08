@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TalentoVerde - Avaliação</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#ffddb5",
+                      "tertiary-fixed-dim": "#e4c197",
+                      "surface-tint": "#486800",
+                      "primary-fixed-dim": "#a0d832",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#eff2eb",
+                      "on-surface-variant": "#434936",
+                      "primary-container": "#c4ff57",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#e7e9e2",
+                      "surface-container-low": "#f2f4ed",
+                      "on-secondary-fixed": "#0d2003",
+                      "secondary": "#4e653e",
+                      "secondary-container": "#d0ebb9",
+                      "primary-fixed": "#bbf54e",
+                      "tertiary-container": "#ffe9d2",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#374d28",
+                      "on-surface": "#191c18",
+                      "inverse-primary": "#a0d832",
+                      "on-background": "#191c18",
+                      "surface-variant": "#e1e3dc",
+                      "outline": "#737a64",
+                      "on-primary-container": "#527500",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#f8faf3",
+                      "on-primary-fixed": "#131f00",
+                      "surface-dim": "#d9dbd4",
+                      "surface-container-highest": "#e1e3dc",
+                      "secondary-fixed": "#d0ebb9",
+                      "primary": "#486800",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#2e312d",
+                      "surface-container": "#edefe8",
+                      "background": "#f8faf3",
+                      "on-primary-fixed-variant": "#354e00",
+                      "surface": "#f8faf3",
+                      "on-tertiary-container": "#816642",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#b5cf9f",
+                      "on-tertiary-fixed": "#2a1800",
+                      "outline-variant": "#c3c9b0",
+                      "on-tertiary-fixed-variant": "#5a4222",
+                      "tertiary": "#745a37",
+                      "on-secondary-container": "#546b43",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "sm": "8px",
+                      "container-padding": "40px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "gutter": "20px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "h2": ["Inter"],
+                      "body-md": ["Inter"],
+                      "h1": ["Inter"],
+                      "h3": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-caps": ["Inter"]
+              },
+              "fontSize": {
+                      "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                      "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "h1": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                      "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Minimal Header (Nav Shell Suppressed for Transactional Focus) -->
+<header class="w-full py-xl flex justify-center items-center shrink-0">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[32px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-h3 text-h3 text-primary font-bold tracking-tight">TalentoVerde</span>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-lg pb-xl w-full">
+<!-- Centered Constraint Container -->
+<div class="w-full max-w-[860px] flex flex-col gap-xl">
+<!-- Progress Header -->
+<div class="flex flex-col gap-sm w-full">
+<div class="flex justify-between items-end w-full px-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Avaliação Lógica</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant font-bold">Pergunta 3 de 10</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden shadow-inner">
+<div class="h-full bg-primary-fixed rounded-full w-[30%] transition-all duration-500 ease-out relative">
+<!-- Subtle highlight on progress bar for depth -->
+<div class="absolute inset-0 bg-white/20 w-full h-1"></div>
+</div>
+</div>
+</div>
+<!-- Question Card (Level 1 Surface with Kraft Border) -->
+<div class="bg-surface-container-lowest border border-tertiary-fixed-dim rounded-xl shadow-[0px_4px_12px_rgba(74,84,82,0.08)] p-xl md:p-[40px] w-full flex flex-col gap-xl">
+<!-- Question Text -->
+<div class="flex flex-col gap-md">
+<h2 class="font-h2 text-h2 text-on-surface">
+                        Em uma arquitetura de microsserviços, se o Serviço A depende de dados do Serviço B e o Serviço B fica temporariamente indisponível, qual padrão de resiliência é mais apropriado para evitar uma falha em cascata no Serviço A?
+                    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Selecione a alternativa que melhor representa uma solução arquitetural robusta para este cenário de falha parcial.
+                    </p>
+</div>
+<!-- Options Grid (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mt-sm">
+<!-- Option A (Resting State) -->
+<button class="group flex items-start p-lg bg-background border border-tertiary-fixed-dim rounded-lg hover:border-primary hover:bg-surface-container-lowest hover:shadow-sm transition-all text-left w-full focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:ring-offset-2 focus:ring-offset-background">
+<div class="w-8 h-8 shrink-0 rounded-full border border-outline flex items-center justify-center mr-md mt-1 group-hover:border-primary group-hover:bg-primary/5 transition-colors">
+<span class="font-body-md text-on-surface-variant group-hover:text-primary font-bold">A</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface mt-1">Aumentar o timeout das requisições HTTP do Serviço A para o Serviço B indefinidamente.</span>
+</button>
+<!-- Option B (Selected/Active State Demo) -->
+<button class="group flex items-start p-lg bg-surface-container-lowest border-2 border-primary-fixed rounded-lg shadow-sm transition-all text-left w-full relative overflow-hidden focus:outline-none">
+<!-- Active Accent Background Hint -->
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary-fixed/10 rounded-bl-full -z-10"></div>
+<div class="w-8 h-8 shrink-0 rounded-full border-2 border-primary-fixed flex items-center justify-center mr-md mt-1 bg-primary-fixed text-on-primary-fixed">
+<span class="font-body-md font-bold">B</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface mt-1 font-medium">Implementar o padrão Circuit Breaker no Serviço A com um mecanismo de fallback.</span>
+<!-- Check icon indicating selection -->
+<div class="absolute bottom-4 right-4 text-primary-fixed bg-on-primary-fixed rounded-full p-1 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</button>
+<!-- Option C (Resting State) -->
+<button class="group flex items-start p-lg bg-background border border-tertiary-fixed-dim rounded-lg hover:border-primary hover:bg-surface-container-lowest hover:shadow-sm transition-all text-left w-full focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:ring-offset-2 focus:ring-offset-background">
+<div class="w-8 h-8 shrink-0 rounded-full border border-outline flex items-center justify-center mr-md mt-1 group-hover:border-primary group-hover:bg-primary/5 transition-colors">
+<span class="font-body-md text-on-surface-variant group-hover:text-primary font-bold">C</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface mt-1">Redirecionar todas as chamadas do Serviço A diretamente para o banco de dados do Serviço B.</span>
+</button>
+<!-- Option D (Resting State) -->
+<button class="group flex items-start p-lg bg-background border border-tertiary-fixed-dim rounded-lg hover:border-primary hover:bg-surface-container-lowest hover:shadow-sm transition-all text-left w-full focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:ring-offset-2 focus:ring-offset-background">
+<div class="w-8 h-8 shrink-0 rounded-full border border-outline flex items-center justify-center mr-md mt-1 group-hover:border-primary group-hover:bg-primary/5 transition-colors">
+<span class="font-body-md text-on-surface-variant group-hover:text-primary font-bold">D</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface mt-1">Configurar o Serviço A para ignorar os dados do Serviço B e prosseguir sem eles em todos os casos.</span>
+</button>
+</div>
+</div>
+<!-- Footer Action Area -->
+<div class="flex justify-between items-center w-full mt-sm px-xs">
+<!-- Optional secondary action (could be 'Pular' or hidden. Keeping minimal per prompt) -->
+<div class="w-[120px]"></div>
+<!-- Primary Action -->
+<button class="bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase tracking-wider px-xl py-md rounded-full shadow-[0_4px_14px_0_rgba(187,245,78,0.39)] hover:bg-primary-container hover:shadow-[0_6px_20px_rgba(187,245,78,0.23)] hover:-translate-y-[1px] transition-all duration-200 flex items-center gap-sm">
+                    PRÓXIMA
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>
