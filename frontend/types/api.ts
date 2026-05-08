@@ -99,7 +99,7 @@ export interface CreateOrganogramaNodeRequest {
 export interface Job {
   id: string
   titulo: string
-  descricao: string
+  descricao: string | null
   requisitos: string | null
   salario: string | null
   status: JobStatus
@@ -112,6 +112,7 @@ export interface Job {
   companyId: string
   createdAt: string
   updatedAt: string
+  lider?: Pick<OrganogramaNode, "id" | "nome" | "cargo"> | null
   _count?: { applications: number }
 }
 
@@ -129,6 +130,30 @@ export type UpdateJobRequest = Partial<CreateJobRequest>
 
 // ─── Candidate — modelo: Candidate ───────────────────────────────────────────
 
+export interface DiscScores {
+  dominance: number
+  influence: number
+  steadiness: number
+  conscientiousness: number
+  primary: string
+}
+
+export interface EneagramaScores {
+  scores: Record<string, number>
+  primaryType: number
+}
+
+export interface PersonalitiesScore {
+  type: string
+  scores: Record<string, number>
+}
+
+export interface RespostasJson {
+  disc?: DiscScores | null
+  eneagrama?: EneagramaScores | null
+  personalities?: PersonalitiesScore | null
+}
+
 export interface Candidate {
   id: string
   nome: string
@@ -136,6 +161,7 @@ export interface Candidate {
   telefone: string | null
   curriculoUrl: string | null
   testCompletedAt: string | null
+  respostasJson?: RespostasJson | null
   createdAt: string
   updatedAt: string
   personality?: PersonalityResult
@@ -238,42 +264,34 @@ export interface DesafioPratico {
 
 // ─── Teste Psicométrico — portal público /teste/[token] ──────────────────────
 
-export interface TestSession {
-  token: string
-  candidateNome: string
-  companyName: string
-  companyLogo: string | null
-  jobTitulo: string
-  expiresAt: string
-}
+type DiscValue = "D" | "I" | "S" | "C"
+type PersonalityValue = "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P"
 
-export interface DiscOption {
-  id: string
-  text: string
-  dimension: "D" | "I" | "S" | "C"
-}
+export type { DiscValue, PersonalityValue }
 
-export interface DiscQuestion {
-  id: string
-  index: number
-  options: DiscOption[]
-}
+export interface DiscOption { value: DiscValue; text: string }
+export interface DiscQuestion { id: string; text: string; options: DiscOption[] }
 
-export interface ScaleQuestion {
-  id: string
-  index: number
-  text: string
-  category: string
-}
+export interface EneagramaOption { value: number; text: string }
+export interface EneagramaQuestion { id: string; text: string; options: EneagramaOption[] }
+
+export interface PersonalityOption { value: PersonalityValue; text: string }
+export interface PersonalityQuestion { id: string; text: string; options: PersonalityOption[] }
 
 export interface TestQuestions {
   disc: DiscQuestion[]
-  eneagrama: ScaleQuestion[]
-  personalidades: ScaleQuestion[]
+  eneagrama: EneagramaQuestion[]
+  personalities: PersonalityQuestion[]
+}
+
+export interface TestData {
+  candidate: string
+  expiresAt: string
+  questions: TestQuestions
 }
 
 export interface TestSubmitRequest {
-  discAnswers: Record<string, { most: string; least: string }>
-  eneagramaAnswers: Record<string, number>
-  personalidadesAnswers: Record<string, number>
+  disc?: Record<string, DiscValue>
+  eneagrama?: Record<string, number>
+  personalities?: Record<string, PersonalityValue>
 }

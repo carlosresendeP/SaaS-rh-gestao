@@ -3,10 +3,11 @@
 import { useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
-import { ChevronLeft, Users } from "lucide-react"
+import { ChevronLeft, Copy, Link2, SendHorizonal, User, Users } from "lucide-react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { RankingSidebar } from "@/components/relatorio/RankingSidebar"
@@ -14,6 +15,7 @@ import { CandidateAnalysis } from "@/components/relatorio/CandidateAnalysis"
 import { useJob } from "@/hooks/useJobs"
 import { useJobApplications } from "@/hooks/useApplications"
 import { jobService } from "@/services/job.service"
+import { applicationService } from "@/services/application.service"
 import { cn } from "@/lib/utils"
 import type { Application, JobStatus } from "@/types/api"
 
@@ -29,6 +31,10 @@ function formatSalary(min?: string | null, max?: string | null): string {
   if (min && max) return `${fmt(min)} – ${fmt(max)}`
   if (min) return `A partir de ${fmt(min)}`
   return `Até ${fmt(max!)}`
+}
+
+function copyToClipboard(text: string, label: string) {
+  navigator.clipboard.writeText(text).then(() => toast.success(`${label} copiado!`))
 }
 
 function PageSkeleton() {
@@ -50,6 +56,7 @@ export default function VagaDetailPage() {
   const { id } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
   const [selectedApp, setSelectedApp] = useState<Application | null>(null)
+  const [testLinks, setTestLinks] = useState<Record<string, string>>({})
 
   const { data: job, isLoading: jobLoading } = useJob(id)
   const { data: applications = [], isLoading: appsLoading } = useJobApplications(id)
@@ -67,6 +74,15 @@ export default function VagaDetailPage() {
     onError: () => toast.error("Erro ao gerar análise. Tente novamente."),
   })
 
+  const generateTestLinkMutation = useMutation({
+    mutationFn: (appId: string) => applicationService.createTestLink(appId),
+    onSuccess: (data, appId) => {
+      setTestLinks((prev) => ({ ...prev, [appId]: data.url }))
+      copyToClipboard(data.url, "Link do teste")
+    },
+    onError: () => toast.error("Erro ao gerar link. Tente novamente."),
+  })
+
   if (jobLoading || appsLoading) return <PageSkeleton />
 
   if (!job) {
@@ -82,9 +98,13 @@ export default function VagaDetailPage() {
 
   const cfg = statusConfig[job.status]
   const description = job.jdGerada || job.descricao
+  const publicUrl = job.publicToken
+    ? `${typeof window !== "undefined" ? window.location.origin : ""}/candidatar/${job.publicToken}`
+    : null
 
   return (
     <div className="max-w-[1440px] mx-auto space-y-6">
+      {/* Header */}
       <div className="flex items-center gap-3">
         <Link href="/vagas" className="text-muted-foreground hover:text-foreground transition-colors">
           <ChevronLeft className="size-5" />
@@ -98,8 +118,27 @@ export default function VagaDetailPage() {
           </div>
           <p className="text-sm text-muted-foreground mt-0.5">
             {formatSalary(job.salaryMin, job.salaryMax)}
+            {job.lider && (
+              <span className="ml-3 inline-flex items-center gap-1">
+                <User className="size-3" />
+                {job.lider.nome} — {job.lider.cargo}
+              </span>
+            )}
           </p>
         </div>
+
+        {/* Link público de candidatura */}
+        {publicUrl && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => copyToClipboard(publicUrl, "Link da vaga")}
+            className="shrink-0 gap-2"
+          >
+            <Link2 className="size-4" />
+            Copiar Link Público
+          </Button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -139,12 +178,33 @@ export default function VagaDetailPage() {
                 <CardTitle className="text-xs font-bold uppercase tracking-widest">
                   Análise — {selectedApp.candidate?.nome ?? "Candidato"}
                 </CardTitle>
-                <button
-                  onClick={() => setSelectedApp(null)}
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Fechar ×
-                </button>
+                <div className="flex items-center gap-2">
+                  {/* Gerar / copiar link de teste */}
+                  {testLinks[selectedApp.id] ? (
+                    <button
+                      onClick={() => copyToClipboard(testLinks[selectedApp.id], "Link do teste")}
+                      className="flex items-center gap-1 text-xs text-sidebar hover:underline"
+                    >
+                      <Copy className="size-3" />
+                      Copiar link do teste
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => generateTestLinkMutation.mutate(selectedApp.id)}
+                      disabled={generateTestLinkMutation.isPending}
+                      className="flex items-center gap-1 text-xs text-sidebar hover:underline disabled:opacity-50"
+                    >
+                      <SendHorizonal className="size-3" />
+                      {generateTestLinkMutation.isPending ? "Gerando..." : "Gerar link de teste"}
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setSelectedApp(null)}
+                    className="text-xs text-muted-foreground hover:text-foreground transition-colors ml-2"
+                  >
+                    Fechar ×
+                  </button>
+                </div>
               </CardHeader>
               <CardContent>
                 <CandidateAnalysis

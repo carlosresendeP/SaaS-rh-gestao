@@ -20,10 +20,13 @@ export const applicationService = {
     return data.data
   },
 
-  createTestLink: async (id: string): Promise<{ token: string }> => {
-    const { data } = await api.post<ApiResponse<{ token: string }>>(
+  createTestLink: async (id: string): Promise<{ url: string; expiresAt: string }> => {
+    const { data } = await api.post<ApiResponse<{ url: string; expiresAt: string }>>(
       `/applications/${id}/test-link`
     )
-    return data.data
+    // Backend returns its own API URL — extract the UUID token and build the frontend URL
+    const token = data.data.url.split("/").pop()
+    const frontendUrl = `${window.location.origin}/teste/${token}`
+    return { url: frontendUrl, expiresAt: data.data.expiresAt }
   },
 }

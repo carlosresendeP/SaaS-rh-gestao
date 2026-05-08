@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
   Briefcase,
+  Users,
   Network,
   Bot,
   Settings,
@@ -20,6 +21,7 @@ import { cn } from "@/lib/utils"
 const navItems = [
   { href: "/dashboard",     label: "Dashboard",    icon: LayoutDashboard },
   { href: "/vagas",         label: "Vagas",         icon: Briefcase },
+  { href: "/candidatos",    label: "Candidatos",   icon: Users },
   { href: "/organograma",   label: "Organograma",   icon: Network },
   { href: "/chat",          label: "Chat IA",        icon: Bot },
   { href: "/configuracoes", label: "Configurações", icon: Settings },

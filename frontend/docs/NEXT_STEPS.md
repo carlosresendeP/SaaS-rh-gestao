@@ -255,7 +255,22 @@ app/(app)/configuracoes/page.tsx
 
 ---
 
-## Etapa 13 — Portal do Candidato
+## Etapa 14 — Pipeline de Candidatos ✅
+
+```
+app/(app)/candidatos/page.tsx
+```
+
+- Kanban com 6 colunas: Pendente → Em Análise → Teste Psicométrico → Entrevista → Aprovado → Reprovado
+- Filtro por vaga (select de todas as vagas da empresa)
+- Cards com: nome, vaga, match score, indicador de teste concluído
+- Mover candidato entre colunas via dropdown "Mover para"
+- Clique no card abre a vaga correspondente (`/vagas/[id]`)
+- Sidebar: novo item "Candidatos" com ícone Users
+
+---
+
+## Etapa 13 — Portal do Candidato ✅
 
 ```
 app/teste/[token]/
@@ -290,7 +305,8 @@ app/teste/[token]/
 | 11 — Chat | Média | 1h |
 | 12 — Config | Baixa | 45 min |
 | 13 — Portal candidato | Alta | 2h |
-| **Total** | | **~14h** |
+| 14 — Pipeline candidatos | Média | 1h |
+| **Total** | | **~15h** |
 
 ---
 

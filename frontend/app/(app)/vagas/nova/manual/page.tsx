@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -12,12 +13,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
+import { CandidatesRepeater, type CandidateEntry } from "@/components/vagas/CandidatesRepeater"
 import { jobService } from "@/services/job.service"
+import { candidateService } from "@/services/candidate.service"
 import { organogramaService } from "@/services/organograma.service"
 import { createJobSchema, type CreateJobFormValues } from "@/lib/validations/job"
 
 export default function NovaVagaManualPage() {
   const router = useRouter()
+  const [candidates, setCandidates] = useState<CandidateEntry[]>([])
 
   const { data: nodes = [] } = useQuery({
     queryKey: ["organograma"],
@@ -44,7 +49,28 @@ export default function NovaVagaManualPage() {
         liderId: values.liderId,
         status: "ABERTA",
       })
-      toast.success("Vaga criada com sucesso!")
+
+      // Apply each valid candidate in parallel
+      const valid = candidates.filter((c) => c.nome.trim() && c.email.trim())
+      if (valid.length > 0) {
+        await Promise.allSettled(
+          valid.map((c) =>
+            candidateService.apply({
+              jobId: job.id,
+              nome: c.nome.trim(),
+              email: c.email.trim(),
+              telefone: c.telefone.trim() || undefined,
+              curriculoUrl: c.curriculoUrl.trim() || undefined,
+            })
+          )
+        )
+      }
+
+      toast.success(
+        valid.length > 0
+          ? `Vaga criada com ${valid.length} candidato(s)!`
+          : "Vaga criada com sucesso!"
+      )
       router.push(`/vagas/${job.id}`)
     } catch {
       toast.error("Erro ao criar vaga. Tente novamente.")
@@ -59,11 +85,12 @@ export default function NovaVagaManualPage() {
         </Link>
         <div>
           <h1 className="text-2xl font-bold">Criar Vaga Manualmente</h1>
-          <p className="text-sm text-muted-foreground">Preencha todos os detalhes da vaga</p>
+          <p className="text-sm text-muted-foreground">Preencha os detalhes e adicione candidatos existentes</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Dados da vaga */}
         <div className="space-y-1.5">
           <Label htmlFor="titulo">Título da Vaga *</Label>
           <Input id="titulo" {...register("titulo")} placeholder="Ex: Desenvolvedor Full Stack Sênior" />
@@ -115,9 +142,22 @@ export default function NovaVagaManualPage() {
             id="descricao"
             {...register("descricao")}
             placeholder="Descreva as responsabilidades, benefícios, cultura da empresa..."
-            className="min-h-[200px]"
+            className="min-h-[180px]"
           />
           {errors.descricao && <p className="text-xs text-destructive">{errors.descricao.message}</p>}
+        </div>
+
+        <Separator className="my-2" />
+
+        {/* Candidatos */}
+        <div className="space-y-3">
+          <div>
+            <p className="text-sm font-bold">Candidatos Existentes</p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Adicione candidatos que já têm para essa vaga. Deixe em branco para adicionar depois.
+            </p>
+          </div>
+          <CandidatesRepeater onChange={setCandidates} />
         </div>
 
         <div className="flex justify-end gap-3 pt-2 border-t border-secondary/20">
