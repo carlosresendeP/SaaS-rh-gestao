@@ -38,8 +38,11 @@ export default function CadastroPage() {
       await authService.signup(values)
       toast.success("Conta criada! Faça seu login para continuar.")
       router.push("/login")
-    } catch {
-      toast.error("Erro ao criar conta. Verifique os dados e tente novamente.", { duration: 5000 })
+    } catch (err: unknown) {
+      const msg =
+        (err as { response?: { data?: { error?: string } } })?.response?.data?.error ??
+        "Erro ao criar conta. Verifique os dados e tente novamente."
+      toast.error(msg, { duration: 5000 })
     }
   }
 

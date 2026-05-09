@@ -5,6 +5,7 @@ import type { RegisterDTO, LoginDTO } from "../schemas/auth.schema";
 import jwt from "jsonwebtoken";
 import { randomUUID } from "crypto";
 import { env } from "../config/env";
+import { Prisma } from "../generated/prisma/client";
 
 const REFRESH_TTL_MS = 7 * 24 * 60 * 60 * 1000 // 7 dias
 
@@ -14,35 +15,31 @@ function generateRefreshToken() {
 
 export class AuthService {
   async register({ nome, email, password, razaoSocial, cnpj }: RegisterDTO) {
-    // 1. Verifica se o usuário já existe
     const existingUser = await prisma.user.findUnique({ where: { email } });
-    
-    if (existingUser) {
-      throw new AppError("Email already registered", 409);
-    }
+    if (existingUser) throw new AppError("E-mail já cadastrado.", 409);
 
-    // 2. Hash da senha
+    const existingCompany = await prisma.company.findUnique({ where: { cnpj } });
+    if (existingCompany) throw new AppError("CNPJ já cadastrado.", 409);
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 3. Transação: Cria Empresa + Usuário
-    const result = await prisma.$transaction(async (tx) => {
-      const company = await tx.company.create({
-        data: { razaoSocial, cnpj },
+    try {
+      const result = await prisma.$transaction(async (tx) => {
+        const company = await tx.company.create({
+          data: { razaoSocial, cnpj },
+        });
+        const user = await tx.user.create({
+          data: { nome, email, password: hashedPassword, companyId: company.id },
+        });
+        return { company, user };
       });
-
-      const user = await tx.user.create({
-        data: { 
-          nome, 
-          email, 
-          password: hashedPassword, 
-          companyId: company.id 
-        },
-      });
-
-      return { company, user };
-    });
-
-    return result;
+      return result;
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002") {
+        throw new AppError("E-mail ou CNPJ já cadastrado.", 409);
+      }
+      throw err;
+    }
   }
 
   // Método para Login  --------------------------

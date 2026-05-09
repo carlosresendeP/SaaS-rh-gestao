@@ -477,7 +477,8 @@ REDIS_URL=redis://localhost:6379
 ```
 
 
-
+# 23 fazero uplod da logo nas etapas tambem (opcional)
+# 24 ao concluir a etapa 4 do cadstro ele volta na mesma etapa vazia , corrigir deve ir para o dashboard
 ---
 
 ## Visão Geral — Estimativa Fase 2
