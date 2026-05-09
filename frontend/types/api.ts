@@ -160,6 +160,7 @@ export interface Candidate {
   email: string
   telefone: string | null
   curriculoUrl: string | null
+  linkedinUrl:  string | null
   testCompletedAt: string | null
   respostasJson?: RespostasJson | null
   createdAt: string

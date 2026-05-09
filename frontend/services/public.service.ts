@@ -50,6 +50,7 @@ export const publicService = {
     email: string
     telefone?: string
     curriculoUrl?: string
+    linkedinUrl?: string
   }) => {
     const { data } = await publicApi.post("/applications/apply", body)
     return data.data

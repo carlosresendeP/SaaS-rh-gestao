@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   Mail,
   Phone,
-  Link2,
   Download,
   Zap,
   FlaskConical,
@@ -18,7 +17,10 @@ import {
   Copy,
   Check,
   ExternalLink,
+  Link,
 } from "lucide-react"
+
+
 import { toast } from "sonner"
 import { applicationService } from "@/services/application.service"
 import { Button } from "@/components/ui/button"
@@ -376,22 +378,22 @@ export default function CandidatoProfilePage() {
                   <span>{candidate.telefone}</span>
                 </div>
               )}
-              {candidate?.curriculoUrl && (
+              {candidate?.linkedinUrl && (
                 <div className="flex items-center gap-2 text-sm">
-                  <Link2 className="size-3.5 shrink-0 text-muted-foreground" />
+                  <Link className="size-3.5 shrink-0 text-[#0A66C2]" />
                   <a
-                    href={candidate.curriculoUrl}
+                    href={candidate.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline truncate"
+                    className="text-[#0A66C2] hover:underline truncate"
                   >
-                    Ver currículo
+                    Ver LinkedIn
                   </a>
                 </div>
               )}
             </div>
 
-            {/* Download CV */}
+            {/* Download CV PDF */}
             {candidate?.curriculoUrl && (
               <Button
                 variant="outline"
@@ -400,7 +402,7 @@ export default function CandidatoProfilePage() {
                 onClick={() => window.open(candidate.curriculoUrl!, "_blank")}
               >
                 <Download className="size-3.5 mr-1.5" />
-                Baixar Currículo
+                Baixar Currículo PDF
               </Button>
             )}
           </div>

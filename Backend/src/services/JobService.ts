@@ -85,7 +85,20 @@ export class JobService {
 
 //update de vaga
   async update(id: string, companyId: string, data: UpdateJobDTO) {
-    const job = await prisma.job.update({ where: { id, companyId }, data });
+    // Whitelist explícita — impede que campos como publicToken sejam sobrescritos
+    const job = await prisma.job.update({
+      where: { id, companyId },
+      data: {
+        titulo:     data.titulo,
+        descricao:  data.descricao,
+        requisitos: data.requisitos,
+        salario:    data.salario,
+        salaryMin:  data.salaryMin,
+        salaryMax:  data.salaryMax,
+        liderId:    data.liderId,
+        status:     data.status,
+      },
+    });
     return {
       ...job,
       createdAt: formatBR(job.createdAt),

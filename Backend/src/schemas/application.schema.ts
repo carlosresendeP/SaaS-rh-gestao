@@ -6,6 +6,7 @@ export const applyJobSchema = z.object({
   email: z.string().email("E-mail inválido"),
   telefone: z.string().min(11, "Telefone inválido").optional(),
   curriculoUrl: z.string().url("URL do currículo inválida").optional(),
+  linkedinUrl:  z.string().url("URL do LinkedIn inválida").optional(),
 });
 
 export type ApplyJobDTO = z.infer<typeof applyJobSchema>;

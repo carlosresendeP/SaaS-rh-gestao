@@ -97,7 +97,8 @@ model Candidate {
   nome         String
   email        String        @unique
   telefone     String?
-  curriculoUrl String?       // Para o link do PDF/LinkedIn
+  curriculoUrl String?       // URL do PDF do currículo
+  linkedinUrl  String?       // URL do perfil no LinkedIn
 
   respostasJson   Json?         // Respostas brutas dos testes
   testCompletedAt DateTime?

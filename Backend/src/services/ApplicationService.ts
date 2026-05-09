@@ -29,10 +29,11 @@ export class ApplicationService {
     if (!candidate) {
       candidate = await prisma.candidate.create({
         data: {
-          nome: data.nome,
-          email: data.email,
-          telefone: data.telefone,
-          curriculoUrl: data.curriculoUrl
+          nome:         data.nome,
+          email:        data.email,
+          telefone:     data.telefone,
+          curriculoUrl: data.curriculoUrl,
+          linkedinUrl:  data.linkedinUrl,
         }
       });
     }

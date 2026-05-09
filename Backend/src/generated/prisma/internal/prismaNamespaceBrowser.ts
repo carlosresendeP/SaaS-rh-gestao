@@ -146,6 +146,7 @@ export const CandidateScalarFieldEnum = {
   email: 'email',
   telefone: 'telefone',
   curriculoUrl: 'curriculoUrl',
+  linkedinUrl: 'linkedinUrl',
   respostasJson: 'respostasJson',
   testCompletedAt: 'testCompletedAt',
   createdAt: 'createdAt',
