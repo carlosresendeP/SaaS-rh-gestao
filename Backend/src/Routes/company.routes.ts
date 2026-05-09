@@ -20,4 +20,6 @@ export async function companyRoutes(app: FastifyInstance) {
   );
 
   app.patch("/onboarding/:step", controller.updateStep);
+
+  app.get("/stats", controller.getStats);
 }

@@ -21,6 +21,11 @@ export class CompanyController {
     return reply.send({ ok: true, data });
   };
 
+  getStats = async (req: FastifyRequest, reply: FastifyReply) => {
+    const data = await this.companyService.getStats(req.user.companyId);
+    return reply.send({ ok: true, data });
+  };
+
   updateStep = async (
     req: FastifyRequest<{ Params: { step: string } }>, 
     reply: FastifyReply
