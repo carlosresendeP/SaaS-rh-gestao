@@ -31,7 +31,7 @@ export class TestService {
       data: { token, applicationId, expiresAt },
     });
 
-    const url = `${env.APP_URL}/public/tests/${token}`;
+    const url = `${env.APP_URL}/teste/${token}`;
     const expiresAtFormatted = formatBR(testLink.expiresAt);
 
     await emailService.sendTestLink({

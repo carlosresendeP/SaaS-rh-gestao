@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useState, KeyboardEvent } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { ArrowLeft, Zap, BarChart2, Users, Lightbulb, X, Plus } from "lucide-react"
 import { companyService } from "@/services/company.service"
@@ -49,6 +49,7 @@ type Fields = z.infer<typeof schema>
 
 export default function Etapa4Page() {
   const router = useRouter()
+  const queryClient = useQueryClient()
   const [tagInput, setTagInput] = useState("")
 
   const { data: company } = useQuery({
@@ -105,6 +106,10 @@ export default function Etapa4Page() {
         valores: values.valores,
       })
       await companyService.setOnboardingStep(5)
+      // Atualiza o cache imediatamente para evitar redirect no dashboard
+      queryClient.setQueryData(["company"], (old: Record<string, unknown> | undefined) =>
+        old ? { ...old, onboardingStep: 5 } : old
+      )
       toast.success("Configuração concluída! Bem-vindo ao MakerStack RH.")
       router.push("/dashboard")
     } catch {

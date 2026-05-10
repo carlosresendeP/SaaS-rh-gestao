@@ -64,6 +64,7 @@ export class JobService {
     const jobs = await prisma.job.findMany({
       where: { companyId },
       orderBy: { createdAt: "desc" },
+      include: { _count: { select: { applications: true } } },
     });
 
     return jobs.map(j => ({

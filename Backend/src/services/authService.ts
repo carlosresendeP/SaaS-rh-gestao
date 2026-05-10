@@ -76,7 +76,7 @@ export class AuthService {
       role: user.role,
     };
 
-    const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: "1h" });
+    const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: "1d" });
 
     const rawRefresh = generateRefreshToken();
     const expiresAt  = new Date(Date.now() + REFRESH_TTL_MS);
@@ -117,7 +117,7 @@ export class AuthService {
     const accessToken = jwt.sign(
       { sub: user.id, companyId: user.companyId, role: user.role },
       env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "1d" }
     );
 
     return { accessToken, refreshToken: newRawRefresh };

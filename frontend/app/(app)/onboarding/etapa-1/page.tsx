@@ -1,11 +1,13 @@
 "use client"
 
+import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { useQuery } from "@tanstack/react-query"
 import { toast } from "sonner"
-import { Building2, ImageIcon, ArrowRight } from "lucide-react"
+import { Building2, Upload, Loader2, ArrowRight, X } from "lucide-react"
 import { companyService } from "@/services/company.service"
+import { publicService } from "@/services/public.service"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
@@ -17,6 +19,8 @@ interface Fields {
 
 export default function Etapa1Page() {
   const router = useRouter()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [isUploading, setIsUploading] = useState(false)
 
   const { data: company } = useQuery({
     queryKey: ["company"],
@@ -26,6 +30,8 @@ export default function Etapa1Page() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { isSubmitting },
   } = useForm<Fields>({
     values: {
@@ -33,6 +39,24 @@ export default function Etapa1Page() {
       logoUrl: company?.logoUrl ?? "",
     },
   })
+
+  const logoUrl = watch("logoUrl")
+
+  async function handleLogoUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith("image/")) { toast.error("Selecione uma imagem."); return }
+    if (file.size > 2 * 1024 * 1024) { toast.error("Imagem muito grande. Máximo 2 MB."); return }
+    setIsUploading(true)
+    try {
+      const url = await publicService.uploadFile(file)
+      setValue("logoUrl", url)
+    } catch {
+      toast.error("Erro ao fazer upload. Tente novamente.")
+    } finally {
+      setIsUploading(false)
+    }
+  }
 
   async function onSubmit(values: Fields) {
     try {
@@ -100,23 +124,42 @@ export default function Etapa1Page() {
           </div>
         </div>
 
-        {/* Logo URL */}
+        {/* Logo upload */}
         <div className="flex flex-col gap-2">
-          <Label
-            htmlFor="logoUrl"
-            className="text-xs uppercase tracking-widest text-muted-foreground"
-          >
-            URL DO LOGOTIPO <span className="normal-case tracking-normal">(opcional)</span>
+          <Label className="text-xs uppercase tracking-widest text-muted-foreground">
+            LOGOTIPO <span className="normal-case tracking-normal">(opcional)</span>
           </Label>
-          <div className="relative">
-            <ImageIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-            <Input
-              id="logoUrl"
-              placeholder="https://exemplo.com/logo.png"
-              className="pl-10"
-              {...register("logoUrl")}
-            />
-          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleLogoUpload}
+          />
+          {logoUrl ? (
+            <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/30 px-3 py-2.5">
+              <img src={logoUrl} alt="Logo" className="h-8 object-contain rounded" />
+              <span className="flex-1 text-sm text-muted-foreground truncate">{logoUrl}</span>
+              <button
+                type="button"
+                onClick={() => { setValue("logoUrl", ""); if (fileInputRef.current) fileInputRef.current.value = "" }}
+                className="text-muted-foreground hover:text-destructive transition-colors"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+          ) : (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isUploading}
+              className="w-full justify-center gap-2"
+            >
+              {isUploading ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
+              {isUploading ? "Enviando..." : "Fazer upload do logotipo"}
+            </Button>
+          )}
         </div>
       </div>
 

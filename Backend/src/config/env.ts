@@ -10,7 +10,7 @@ const envShema = z.object({
         message: "o Node Env deve ser ,dev, test, ou prod"
     }),
     JWT_SECRET: z.string().min(10, "Secret Key required"),
-    APP_URL: z.string().default("http://localhost:3001/api"),
+    APP_URL: z.string().default("http://localhost:3000"),
     OPENAI_API_KEY: z.string().min(1, "OPENAI_API_KEY é obrigatória"),
     RESEND_API_KEY: z.string().min(1, "RESEND_API_KEY é obrigatória"),
     EMAIL_FROM: z.string().default("noreply@seudominio.com"),

@@ -477,8 +477,11 @@ REDIS_URL=redis://localhost:6379
 ```
 
 
-# 23 fazero uplod da logo nas etapas tambem (opcional)
-# 24 ao concluir a etapa 4 do cadstro ele volta na mesma etapa vazia , corrigir deve ir para o dashboard
+# 23 fazero uplod da logo nas etapas tambem
+# 24 ao concluir a etapa 4 do cadstro ele volta na mesma etapa vazia (mais salva corretamente) , corrigir deve ir para o dashboard
+# 25 no vagas no card deve aparecer o total de canditatuas q esta como 0 (jobCard.ts)
+# 26 não recebi o email quando cliquei em gerar link, deve mandar o email para o cantidato da vaga par ao teste psicometrico  estava  funcionadno quando o meu email estava como padrão la no testService.ts
+
 ---
 
 ## Visão Geral — Estimativa Fase 2
