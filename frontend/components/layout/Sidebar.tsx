@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Briefcase,
@@ -12,33 +12,39 @@ import {
   LogOut,
   Leaf,
   Plus,
-} from "lucide-react"
-import { useAuth } from "@/hooks/useAuth"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+} from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const navItems = [
-  { href: "/dashboard",     label: "Dashboard",    icon: LayoutDashboard },
-  { href: "/vagas",         label: "Vagas",         icon: Briefcase },
-  { href: "/candidatos",    label: "Candidatos",   icon: Users },
-  { href: "/organograma",   label: "Organograma",   icon: Network },
-  { href: "/chat",          label: "Chat IA",        icon: Bot },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/vagas", label: "Vagas", icon: Briefcase },
+  { href: "/candidatos", label: "Candidatos", icon: Users },
+  { href: "/organograma", label: "Organograma", icon: Network },
+  { href: "/chat", label: "Chat IA", icon: Bot },
   { href: "/configuracoes", label: "Configurações", icon: Settings },
-]
+];
 
 export function Sidebar() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const { user, clearAuth } = useAuth()
+  const pathname = usePathname();
+  const router = useRouter();
+  const { user, clearAuth } = useAuth();
 
   const initials = user?.nome
-    ? user.nome.split(" ").slice(0, 2).map((n) => n[0]).join("").toUpperCase()
-    : "?"
+    ? user.nome
+        .split(" ")
+        .slice(0, 2)
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+    : "?";
 
   function handleLogout() {
-    clearAuth()
-    router.replace("/login")
+    clearAuth();
+    router.replace("/login");
   }
 
   return (
@@ -46,10 +52,14 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-6 mb-8">
         <div className="flex items-center gap-2 text-primary">
-          <Leaf className="size-6" />
-          <span className="text-xl font-bold text-sidebar-foreground">MakerStack RH</span>
+          <Image src="/icon-logo.webp" alt="Logo" className="" width={40} height={20} />
+          <span className="text-xl font-bold text-sidebar-foreground">
+            EnvieAgora<span className="text-primary text-shadow-sm"> RH</span>
+          </span>
         </div>
-        <p className="text-sidebar-foreground/50 text-xs mt-1">Recrutamento Tech</p>
+        <p className="text-sidebar-foreground/50 text-xs mt-1">
+          Recrutamento Tech
+        </p>
       </div>
 
       {/* Nova Vaga CTA */}
@@ -68,7 +78,7 @@ export function Sidebar() {
       {/* Nav */}
       <nav className="flex-1 flex flex-col gap-1">
         {navItems.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href || pathname.startsWith(href + "/")
+          const active = pathname === href || pathname.startsWith(href + "/");
           return (
             <Link
               key={href}
@@ -77,13 +87,13 @@ export function Sidebar() {
                 "flex items-center gap-3 px-4 py-2.5 border-l-4 transition-all duration-150 text-sm font-medium",
                 active
                   ? "border-primary bg-sidebar-accent text-primary font-bold"
-                  : "border-transparent text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                  : "border-transparent text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-foreground",
               )}
             >
               <Icon className="size-4 shrink-0" />
               {label}
             </Link>
-          )
+          );
         })}
       </nav>
 
@@ -96,8 +106,12 @@ export function Sidebar() {
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sidebar-foreground text-sm font-semibold truncate">{user?.nome}</p>
-            <p className="text-sidebar-foreground/50 text-xs truncate">{user?.email}</p>
+            <p className="text-sidebar-foreground text-sm font-semibold truncate">
+              {user?.nome}
+            </p>
+            <p className="text-sidebar-foreground/50 text-xs truncate">
+              {user?.email}
+            </p>
           </div>
         </div>
         <button
@@ -109,5 +123,5 @@ export function Sidebar() {
         </button>
       </div>
     </aside>
-  )
+  );
 }

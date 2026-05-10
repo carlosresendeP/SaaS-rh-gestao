@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { LoginSchema, type LoginFields } from "@/lib/validations/auth"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Leaf, Mail, Lock, ArrowRight } from "lucide-react"
-import { toast } from "sonner"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema, type LoginFields } from "@/lib/validations/auth";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Leaf, Mail, Lock, ArrowRight } from "lucide-react";
+import { toast } from "sonner";
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { authService } from "@/services/auth.service"
-import { companyService } from "@/services/company.service"
-import { useAuth } from "@/hooks/useAuth"
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { authService } from "@/services/auth.service";
+import { companyService } from "@/services/company.service";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function LoginPage() {
-  const router = useRouter()
-  const { setAuth } = useAuth()
+  const router = useRouter();
+  const { setAuth } = useAuth();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFields>({ resolver: zodResolver(LoginSchema) })
+  } = useForm<LoginFields>({ resolver: zodResolver(LoginSchema) });
 
   async function onSubmit(values: LoginFields) {
     try {
-      const { user, token, refreshToken } = await authService.login(values)
-      setAuth(user, token, refreshToken)
+      const { user, token, refreshToken } = await authService.login(values);
+      setAuth(user, token, refreshToken);
       // Redireciona para o onboarding se não foi concluído
       try {
-        const company = await companyService.get()
-        const step = company.onboardingStep
+        const company = await companyService.get();
+        const step = company.onboardingStep;
         // onboardingStep começa em 1 (backend default). Completo = 5.
-        router.push(step >= 5 ? "/dashboard" : `/onboarding/etapa-${step}`)
+        router.push(step >= 5 ? "/dashboard" : `/onboarding/etapa-${step}`);
       } catch {
-        router.push("/dashboard")
+        router.push("/dashboard");
       }
     } catch {
-      toast.error("E-mail ou senha incorretos", { duration: 5000 })
+      toast.error("E-mail ou senha incorretos", { duration: 5000 });
     }
   }
 
@@ -51,7 +51,7 @@ export default function LoginPage() {
         <div className="relative z-10 flex flex-col justify-start gap-5 p-10 h-full w-full">
           <div className="flex items-center gap-2 text-primary">
             <Leaf className="size-8" />
-            <span className="text-2xl font-bold">MakerStack RH</span>
+            <span className="text-2xl font-bold">EnvieAgora RH</span>
           </div>
           <div className="max-w-md">
             <h1 className="text-4xl font-bold text-sidebar-foreground mb-4">
@@ -71,7 +71,7 @@ export default function LoginPage() {
           {/* Mobile logo */}
           <div className="flex lg:hidden items-center gap-2 text-sidebar mb-8">
             <Leaf className="size-8" />
-            <span className="text-2xl font-bold">MakerStack RH</span>
+            <span className="text-2xl font-bold">EnvieAgora RH</span>
           </div>
 
           <div className="mb-8">
@@ -84,7 +84,10 @@ export default function LoginPage() {
           </div>
 
           <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-5"
+            >
               <div className="flex flex-col gap-2">
                 <Label
                   htmlFor="email"
@@ -103,7 +106,9 @@ export default function LoginPage() {
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-xs text-destructive">{errors.email.message}</p>
+                  <p className="text-xs text-destructive">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -133,7 +138,9 @@ export default function LoginPage() {
                   />
                 </div>
                 {errors.password && (
-                  <p className="text-xs text-destructive">{errors.password.message}</p>
+                  <p className="text-xs text-destructive">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
 
@@ -156,7 +163,10 @@ export default function LoginPage() {
             <div className="mt-6 pt-6 border-t border-border text-center">
               <p className="text-sm text-muted-foreground">
                 Não tem uma conta?{" "}
-                <Link href="/cadastro" className="text-foreground hover:underline font-bold">
+                <Link
+                  href="/cadastro"
+                  className="text-foreground hover:underline font-bold"
+                >
                   Cadastre-se
                 </Link>
               </p>
@@ -164,16 +174,22 @@ export default function LoginPage() {
           </div>
 
           <div className="mt-8 flex justify-center gap-6 text-muted-foreground/70">
-            <Link href="#" className="text-xs hover:text-foreground transition-colors">
+            <Link
+              href="#"
+              className="text-xs hover:text-foreground transition-colors"
+            >
               Termos de Uso
             </Link>
             <span className="text-xs">•</span>
-            <Link href="#" className="text-xs hover:text-foreground transition-colors">
+            <Link
+              href="#"
+              className="text-xs hover:text-foreground transition-colors"
+            >
               Política de Privacidade
             </Link>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

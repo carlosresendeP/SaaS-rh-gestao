@@ -1,4 +1,4 @@
-# Próximos Passos — Frontend MakerStack RH
+# Próximos Passos — Frontend EnvieAgora RH
 
 > Estado atual: landing page + design system prontos.
 > Este documento define a ordem exata de implementação do restante do frontend.
@@ -302,6 +302,7 @@ app/candidatar/[publicToken]/page.tsx
 - `services/public.service.ts` — `getJob(token)`, `uploadResume(file)`, `apply(body)`
 
 **Backend necessário:**
+
 - `GET /api/public/jobs/:publicToken` — retorna vaga + logo da empresa (sem auth)
 - `POST /api/public/upload` — aceita PDF (multipart), salva em `backend/uploads/`
 - `GET /api/public/uploads/:filename` — serve o arquivo
@@ -352,10 +353,18 @@ Hoje a logo é salva como URL digitada manualmente. Substituir por upload de arq
 - Manter input de URL manual como fallback ("ou cole uma URL")
 
 **Mudança necessária no backend** (`publicJob.routes.ts`):
+
 ```ts
 // Alterar validação de mimetype:
-const allowed = ["application/pdf", "image/png", "image/jpeg", "image/svg+xml", "image/webp"]
-if (!allowed.includes(file.mimetype)) throw new AppError("Tipo de arquivo não suportado.", 400)
+const allowed = [
+  "application/pdf",
+  "image/png",
+  "image/jpeg",
+  "image/svg+xml",
+  "image/webp",
+];
+if (!allowed.includes(file.mimetype))
+  throw new AppError("Tipo de arquivo não suportado.", 400);
 ```
 
 ---
@@ -388,11 +397,13 @@ backend/src/services/testService.ts  →  chamar após submit()
 Instalar: `pnpm add resend` (backend)
 
 Eventos prioritários:
+
 1. **Candidato se inscreve** → e-mail para o RH: "Nova candidatura — {nome} para {vaga}"
 2. **Testes concluídos** → e-mail para o RH: "{nome} concluiu os testes — ver relatório"
 3. **Link de testes gerado** → e-mail para o candidato com o link (atualmente só é copiado)
 
 Variáveis de ambiente necessárias:
+
 ```
 RESEND_API_KEY=re_...
 EMAIL_FROM=noreply@suaempresa.com
@@ -466,56 +477,57 @@ Quando implementar: quando o `generateMatch` ou `generateJd` demorar > 30s ou
 quando houver múltiplos usuários simultâneos.
 
 Fluxo:
+
 1. `POST /ai/jobs/:id/match` → enfileira job → retorna `{ jobId, status: "processing" }`
 2. Worker processa em background (sem bloquear request)
 3. Frontend faz polling `GET /ai/jobs/:id/match/status` a cada 3s
 4. Quando `status: "done"` → invalida query e mostra resultado
 
 Variáveis necessárias:
+
 ```
 REDIS_URL=redis://localhost:6379
 ```
 
-
 # 23 fazero uplod da logo nas etapas tambem
+
 # 24 ao concluir a etapa 4 do cadstro ele volta na mesma etapa vazia (mais salva corretamente) , corrigir deve ir para o dashboard
+
 # 25 no vagas no card deve aparecer o total de canditatuas q esta como 0 (jobCard.ts)
-# 26 não recebi o email quando cliquei em gerar link, deve mandar o email para o cantidato da vaga par ao teste psicometrico  estava  funcionadno quando o meu email estava como padrão la no testService.ts
+
+# 26 não recebi o email quando cliquei em gerar link, deve mandar o email para o cantidato da vaga par ao teste psicometrico estava funcionadno quando o meu email estava como padrão la no testService.ts
 
 ---
 
-
 # 28 Alta prioridade (core do produto)
 
-1	Chat Assistente de RH — chat contextual disponível em todas as telas com streaming	
-2	Tela de resultados para o candidato após concluir os testes (o candidato vê seu perfil)	
-3	Email com resultados em PDF para o candidato após completar os testes	
-4	Fluxo B — "Já Tenho Candidatos" — cadastro manual de candidatos com upload de CV, LinkedIn, transcrição de entrevista	
-5	Prompt de match usa contexto da empresa — atualmente só passa job + candidate, falta contextoEmpresa + perfilRitmo + valores
+1 Chat Assistente de RH — chat contextual disponível em todas as telas com streaming
+2 Tela de resultados para o candidato após concluir os testes (o candidato vê seu perfil)
+3 Email com resultados em PDF para o candidato após completar os testes
+4 Fluxo B — "Já Tenho Candidatos" — cadastro manual de candidatos com upload de CV, LinkedIn, transcrição de entrevista
+5 Prompt de match usa contexto da empresa — atualmente só passa job + candidate, falta contextoEmpresa + perfilRitmo + valores
 
+# 29
 
-
-# 29	
-6	LGPD consent — checkbox de aceite antes de iniciar os testes no portal
-7	Auto-save por questão no portal de testes (anti-perda por fechamento de aba)
-8	Endereço completo + ViaCEP na etapa 1 do onboarding (CEP → auto-preenche cidade/estado)
-9	Etapa 3 do onboarding funcional — hoje é só informativa; deveria ter "já tenho resultados" vs "enviar links para colaboradores"
-10	IA gera perguntas de triagem + perfil psicométrico ideal ao criar vaga com IA
-11	Plano de desenvolvimento no relatório de match (livros, cursos, evolução salarial)
-
+6 LGPD consent — checkbox de aceite antes de iniciar os testes no portal
+7 Auto-save por questão no portal de testes (anti-perda por fechamento de aba)
+8 Endereço completo + ViaCEP na etapa 1 do onboarding (CEP → auto-preenche cidade/estado)
+9 Etapa 3 do onboarding funcional — hoje é só informativa; deveria ter "já tenho resultados" vs "enviar links para colaboradores"
+10 IA gera perguntas de triagem + perfil psicométrico ideal ao criar vaga com IA
+11 Plano de desenvolvimento no relatório de match (livros, cursos, evolução salarial)
 
 ## Visão Geral — Estimativa Fase 2
 
-| Etapa | Descrição                        | Complexidade | Tempo est. |
-| ----- | -------------------------------- | ------------ | ---------- |
-| 16    | Upload real de logo              | Baixa        | 30 min     |
-| 17    | Contexto da empresa              | Baixa        | 20 min     |
-| 18    | E-mails automáticos (Resend)     | Média        | 2h         |
-| 19    | Detalhe do candidato             | Média        | 1.5h       |
-| 20    | Refresh token & sessão segura    | Média        | 2h         |
-| 21    | Dashboard analytics              | Média        | 2h         |
-| 22    | BullMQ (filas IA background)     | Alta         | 3h         |
-| **Total** |                             |              | **~11h**   |
+| Etapa     | Descrição                     | Complexidade | Tempo est. |
+| --------- | ----------------------------- | ------------ | ---------- |
+| 16        | Upload real de logo           | Baixa        | 30 min     |
+| 17        | Contexto da empresa           | Baixa        | 20 min     |
+| 18        | E-mails automáticos (Resend)  | Média        | 2h         |
+| 19        | Detalhe do candidato          | Média        | 1.5h       |
+| 20        | Refresh token & sessão segura | Média        | 2h         |
+| 21        | Dashboard analytics           | Média        | 2h         |
+| 22        | BullMQ (filas IA background)  | Alta         | 3h         |
+| **Total** |                               |              | **~11h**   |
 
 ---
 

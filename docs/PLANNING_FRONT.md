@@ -1,25 +1,26 @@
 # PLANNING — FRONTEND
-## MakerStack RH · Hackathon #01
+
+## EnvieAgora RH · Hackathon #01
 
 ---
 
 ## Stack
 
-| Camada | Tecnologia |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| Linguagem | TypeScript strict |
-| Estilo | Tailwind CSS v4 |
-| Componentes | shadcn/ui + Radix UI |
-| Formulários | React Hook Form + Zod |
-| Estado global | Zustand |
-| Data fetching | TanStack Query v5 |
-| HTTP client | Axios (interceptors JWT) |
-| Ícones | Lucide React |
-| Toasts | Sonner |
-| Fonte | Montserrat (Google Fonts) |
-| Deploy | Vercel |
-| API Base | `http://localhost:3333` (dev) / Railway (prod) |
+| Camada        | Tecnologia                                     |
+| ------------- | ---------------------------------------------- |
+| Framework     | Next.js 16 (App Router)                        |
+| Linguagem     | TypeScript strict                              |
+| Estilo        | Tailwind CSS v4                                |
+| Componentes   | shadcn/ui + Radix UI                           |
+| Formulários   | React Hook Form + Zod                          |
+| Estado global | Zustand                                        |
+| Data fetching | TanStack Query v5                              |
+| HTTP client   | Axios (interceptors JWT)                       |
+| Ícones        | Lucide React                                   |
+| Toasts        | Sonner                                         |
+| Fonte         | Montserrat (Google Fonts)                      |
+| Deploy        | Vercel                                         |
+| API Base      | `http://localhost:3333` (dev) / Railway (prod) |
 
 ---
 
@@ -27,16 +28,16 @@
 
 ### Paleta de Cores
 
-| Token CSS | Cor | Hex | Uso |
-|---|---|---|---|
-| `--primary` | Verde Neon | `#C4FF57` | Botões principais, CTA, ring |
-| `--sidebar` | Verde Floresta | `#597048` | Sidebar background |
-| `--background` | Off White | `#F5F7F0` | Fundo das páginas |
-| `--secondary` | Kraft | `#D6B48B` | Elementos secundários, bordas |
-| `--destructive` | Coral | `#FF9E6E` | Alertas, erros, ações destrutivas |
-| `--accent` | Azul Acinzentado | `#7BB3B0` | Info, estados ativos |
-| `--muted-foreground` | Cinza | `#8D9999` | Labels, texto secundário |
-| `--foreground` | Chumbo | `#4A5452` | Texto principal |
+| Token CSS            | Cor              | Hex       | Uso                               |
+| -------------------- | ---------------- | --------- | --------------------------------- |
+| `--primary`          | Verde Neon       | `#C4FF57` | Botões principais, CTA, ring      |
+| `--sidebar`          | Verde Floresta   | `#597048` | Sidebar background                |
+| `--background`       | Off White        | `#F5F7F0` | Fundo das páginas                 |
+| `--secondary`        | Kraft            | `#D6B48B` | Elementos secundários, bordas     |
+| `--destructive`      | Coral            | `#FF9E6E` | Alertas, erros, ações destrutivas |
+| `--accent`           | Azul Acinzentado | `#7BB3B0` | Info, estados ativos              |
+| `--muted-foreground` | Cinza            | `#8D9999` | Labels, texto secundário          |
+| `--foreground`       | Chumbo           | `#4A5452` | Texto principal                   |
 
 ### Tipografia
 
@@ -46,10 +47,10 @@
 
 ### Raio de Borda
 
-| Token | Valor | Uso |
-|---|---|---|
-| `--radius-sm` | 0.45rem | Badges, chips |
-| `--radius-md` | 0.6rem | Inputs, botões |
+| Token         | Valor   | Uso            |
+| ------------- | ------- | -------------- |
+| `--radius-sm` | 0.45rem | Badges, chips  |
+| `--radius-md` | 0.6rem  | Inputs, botões |
 | `--radius-lg` | 0.75rem | Cards (padrão) |
 | `--radius-xl` | 1.05rem | Modais, sheets |
 
@@ -244,6 +245,7 @@ frontend/
 **Objetivo:** converter visitantes em cadastros. Estética séria mas com personalidade — sem clichês de SaaS genérico.
 
 **Seções:**
+
 - **Navbar** — logo + links âncora + botão "Entrar" (outline) + "Começar grátis" (primary `#C4FF57`)
 - **Hero** — headline forte, subheadline de 1 linha, CTA duplo, mockup do dashboard ao lado
 - **Como funciona** — 3 passos: Crie a vaga → Candidatos fazem o teste → IA gera o relatório
@@ -277,12 +279,12 @@ frontend/
 
 WizardStepper com 4 etapas. Progresso salvo no backend via `PATCH /company/onboarding/:step`.
 
-| Etapa | Página | Conteúdo |
-|---|---|---|
-| 1 | `etapa-1` | Razão Social, CNPJ, CEP (ViaCEP), endereço, upload logo |
-| 2 | `etapa-2` | Montar organograma — lista indentada + Dialog para adicionar nós |
-| 3 | `etapa-3` | Testes dos colaboradores — tabs "Já tenho resultados" / "Gerar links" |
-| 4 | `etapa-4` | Contexto da empresa — tipo, valores (chips), desafios, estilo liderança |
+| Etapa | Página    | Conteúdo                                                                |
+| ----- | --------- | ----------------------------------------------------------------------- |
+| 1     | `etapa-1` | Razão Social, CNPJ, CEP (ViaCEP), endereço, upload logo                 |
+| 2     | `etapa-2` | Montar organograma — lista indentada + Dialog para adicionar nós        |
+| 3     | `etapa-3` | Testes dos colaboradores — tabs "Já tenho resultados" / "Gerar links"   |
+| 4     | `etapa-4` | Contexto da empresa — tipo, valores (chips), desafios, estilo liderança |
 
 **Após etapa 4:** redirect `/dashboard`
 
@@ -293,6 +295,7 @@ WizardStepper com 4 etapas. Progresso salvo no backend via `PATCH /company/onboa
 **Layout:** sidebar esquerda (Verde Floresta) + área principal (Off White).
 
 **Conteúdo:**
+
 - Saudação personalizada com nome do usuário
 - 4 KPI cards: Vagas Abertas, Candidatos Ativos, Em Entrevista, Aprovados este mês
 - Funil de recrutamento horizontal com contagens por status
@@ -304,12 +307,14 @@ WizardStepper com 4 etapas. Progresso salvo no backend via `PATCH /company/onboa
 ### 6. Vagas — `/(app)/vagas`
 
 **Lista:**
+
 - Tabela densa com: título, data, candidatos, status badge, ação
 - Loading: `TableSkeleton`
 - Vazio: `EmptyState` com ícone Briefcase
 - Botão "Nova Vaga" no header
 
 **Detalhe de Vaga — `/(app)/vagas/[id]`:**
+
 - Header: título + status + botão "Gerar Match com IA"
 - 2 colunas: `RankingSidebar` (lista ranqueada) + `CandidateAnalysis` (relatório completo)
 - `CandidateAnalysis` contém: score hero, pontos fortes, pontos de atenção, como liderar, match com cultura, perguntas de entrevista, desafio prático
@@ -321,12 +326,14 @@ WizardStepper com 4 etapas. Progresso salvo no backend via `PATCH /company/onboa
 **Escolha de fluxo** (`/nova`): dois cards clicáveis — "Criar com IA" e "Inserir manualmente"
 
 **Fluxo A — Com IA** (`/nova/com-ia`):
+
 1. Form: Cargo, Líder (Select do organograma), Motivo, Responsabilidades, Metas
 2. `POST /jobs` → `POST /jobs/:id/generate-jd` (loading ~10s com skeleton animado)
 3. `JdPreview` com JD gerada em card editável, borda Verde Neon
 4. Botão "Publicar vaga" → `PATCH /jobs/:id { status: "ABERTA" }` → redirect `/vagas/:id`
 
 **Fluxo B — Manual** (`/nova/manual`):
+
 1. Form da vaga + `CandidatesRepeater` (adicionar N candidatos com nome, email, CV, resultados de testes)
 2. "Ver Match" → `POST /jobs` → adiciona candidatos → `POST /jobs/:id/match`
 3. Loading ~20s com skeleton → redirect `/vagas/:id`
@@ -367,13 +374,13 @@ Tabs: **Empresa** | **Plano**
 
 **Totalmente público, mobile-first, white-label.**
 
-| Página | Conteúdo |
-|---|---|
-| `/teste/[token]` | Boas-vindas, nome da empresa, logo, instrução, aceite LGPD, botão "Iniciar" |
-| `/teste/[token]/disc` | Teste DISC — pares forçados (mais/menos) |
-| `/teste/[token]/eneagrama` | Escala Likert 1-5 |
-| `/teste/[token]/personalidades` | Escala Likert 1-5 (16 personalidades) |
-| `/teste/[token]/concluido` | Tela de conclusão com agradecimento |
+| Página                          | Conteúdo                                                                    |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| `/teste/[token]`                | Boas-vindas, nome da empresa, logo, instrução, aceite LGPD, botão "Iniciar" |
+| `/teste/[token]/disc`           | Teste DISC — pares forçados (mais/menos)                                    |
+| `/teste/[token]/eneagrama`      | Escala Likert 1-5                                                           |
+| `/teste/[token]/personalidades` | Escala Likert 1-5 (16 personalidades)                                       |
+| `/teste/[token]/concluido`      | Tela de conclusão com agradecimento                                         |
 
 **Estado das respostas:** `sessionStorage` (sobrevive refresh sem login)
 **Submit final:** `POST /public/tests/:token/submit` na página `personalidades`
@@ -388,25 +395,29 @@ Os tipos do frontend espelham diretamente o `schema.prisma` do backend.
 ### Enums
 
 ```ts
-type JobStatus = "ABERTA" | "FECHADA" | "PAUSADA"
+type JobStatus = "ABERTA" | "FECHADA" | "PAUSADA";
 
 type ApplicationStatus =
-  | "PENDENTE" | "EM_ANALISE" | "TESTE_PSICOMETRICO"
-  | "ENTREVISTA" | "APROVADO" | "REPROVADO"
+  | "PENDENTE"
+  | "EM_ANALISE"
+  | "TESTE_PSICOMETRICO"
+  | "ENTREVISTA"
+  | "APROVADO"
+  | "REPROVADO";
 ```
 
 ### Modelos principais
 
-| Interface | Modelo Prisma | Observação |
-|---|---|---|
-| `Company` | `Company` | `valores` é `string[]` |
-| `AuthUser` | `User` | sem `password` |
-| `Job` | `Job` | `salaryMin/Max` vem como `string` (Decimal serializado) |
-| `Candidate` | `Candidate` | inclui `personality?: PersonalityResult` |
-| `Application` | `Application` | inclui `matchResultJson: MatchReport \| null` |
-| `OrganogramaNode` | `OrganogramaNode` | `parentId: string \| null` |
-| `PersonalityResult` | `PersonalityResult` | |
-| `TestLink` | `TestLink` | |
+| Interface           | Modelo Prisma       | Observação                                              |
+| ------------------- | ------------------- | ------------------------------------------------------- |
+| `Company`           | `Company`           | `valores` é `string[]`                                  |
+| `AuthUser`          | `User`              | sem `password`                                          |
+| `Job`               | `Job`               | `salaryMin/Max` vem como `string` (Decimal serializado) |
+| `Candidate`         | `Candidate`         | inclui `personality?: PersonalityResult`                |
+| `Application`       | `Application`       | inclui `matchResultJson: MatchReport \| null`           |
+| `OrganogramaNode`   | `OrganogramaNode`   | `parentId: string \| null`                              |
+| `PersonalityResult` | `PersonalityResult` |                                                         |
+| `TestLink`          | `TestLink`          |                                                         |
 
 ### Match Report (JSON da IA)
 
@@ -414,22 +425,29 @@ Estrutura armazenada em `Application.matchResultJson`:
 
 ```ts
 interface MatchReport {
-  matchScore: number          // 0-100
-  resumoExecutivo: string
-  pontosFortes: PontoForte[]
-  pontosAtencao: PontoAtencao[]
-  comoLiderarEsseCandidato: ComoLiderar
-  matchComCultura: MatchCultura
-  perguntasComplementares: string[]
-  desafioPratico: DesafioPratico
+  matchScore: number; // 0-100
+  resumoExecutivo: string;
+  pontosFortes: PontoForte[];
+  pontosAtencao: PontoAtencao[];
+  comoLiderarEsseCandidato: ComoLiderar;
+  matchComCultura: MatchCultura;
+  perguntasComplementares: string[];
+  desafioPratico: DesafioPratico;
 }
 ```
 
 ### Wrapper de resposta
 
 ```ts
-interface ApiResponse<T> { ok: true;  data: T }
-interface ApiError       { ok: false; error: string; fieldErrors?: Record<string, string[]> }
+interface ApiResponse<T> {
+  ok: true;
+  data: T;
+}
+interface ApiError {
+  ok: false;
+  error: string;
+  fieldErrors?: Record<string, string[]>;
+}
 ```
 
 ---
@@ -476,19 +494,19 @@ export default function DashboardPage() { ... }
 
 ```tsx
 // ✅ Via hook (TanStack Query)
-const { data: jobs, isLoading } = useJobs()
+const { data: jobs, isLoading } = useJobs();
 
 // ✅ Via mutation
-const createJob = useCreateJob()
-createJob.mutate({ titulo: "Dev Senior" })
+const createJob = useCreateJob();
+createJob.mutate({ titulo: "Dev Senior" });
 ```
 
 ### Formulários
 
 ```tsx
 // Sempre React Hook Form + Zod
-const schema = z.object({ email: z.string().email() })
-const form = useForm({ resolver: zodResolver(schema) })
+const schema = z.object({ email: z.string().email() });
+const form = useForm({ resolver: zodResolver(schema) });
 ```
 
 ### Tratamento de Estados
@@ -581,16 +599,16 @@ return <ConteudoReal />
 
 ## Cortes Conscientes (MVP)
 
-| Feature | Status |
-|---|---|
-| Server Actions | ❌ Sem — tudo via REST |
-| NextAuth | ❌ Sem — JWT puro |
-| Drag-and-drop (organograma) | ❌ Sem — formulário com Select |
-| Dark mode | ❌ Stretch goal |
-| i18n | ❌ Tudo PT-BR |
-| Paginação | ❌ Volume baixo no MVP |
-| PDF do relatório | ❌ Stretch goal |
-| Notificações por e-mail | ❌ Backend já tem, front não conecta no MVP |
+| Feature                     | Status                                      |
+| --------------------------- | ------------------------------------------- |
+| Server Actions              | ❌ Sem — tudo via REST                      |
+| NextAuth                    | ❌ Sem — JWT puro                           |
+| Drag-and-drop (organograma) | ❌ Sem — formulário com Select              |
+| Dark mode                   | ❌ Stretch goal                             |
+| i18n                        | ❌ Tudo PT-BR                               |
+| Paginação                   | ❌ Volume baixo no MVP                      |
+| PDF do relatório            | ❌ Stretch goal                             |
+| Notificações por e-mail     | ❌ Backend já tem, front não conecta no MVP |
 
 ---
 

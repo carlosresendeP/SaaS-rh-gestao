@@ -1,49 +1,56 @@
-"use client"
+"use client";
 
-import { useRef, useState } from "react"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { useQuery } from "@tanstack/react-query"
-import { toast } from "sonner"
-import { Building2, Upload, Loader2, ArrowRight, X, MapPin } from "lucide-react"
-import { companyService } from "@/services/company.service"
-import { publicService } from "@/services/public.service"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
+import {
+  Building2,
+  Upload,
+  Loader2,
+  ArrowRight,
+  X,
+  MapPin,
+} from "lucide-react";
+import { companyService } from "@/services/company.service";
+import { publicService } from "@/services/public.service";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 interface Fields {
-  nome: string
-  logoUrl: string
-  cep: string
-  logradouro: string
-  cidade: string
-  estado: string
+  nome: string;
+  logoUrl: string;
+  cep: string;
+  logradouro: string;
+  cidade: string;
+  estado: string;
 }
 
 async function fetchViaCep(cep: string) {
-  const digits = cep.replace(/\D/g, "")
-  if (digits.length !== 8) return null
+  const digits = cep.replace(/\D/g, "");
+  if (digits.length !== 8) return null;
   try {
-    const res = await fetch(`https://viacep.com.br/ws/${digits}/json/`)
-    const data = await res.json()
-    if (data.erro) return null
-    return data as { logradouro: string; localidade: string; uf: string }
+    const res = await fetch(`https://viacep.com.br/ws/${digits}/json/`);
+    const data = await res.json();
+    if (data.erro) return null;
+    return data as { logradouro: string; localidade: string; uf: string };
   } catch {
-    return null
+    return null;
   }
 }
 
 export default function Etapa1Page() {
-  const router = useRouter()
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [isUploading, setIsUploading] = useState(false)
-  const [isFetchingCep, setIsFetchingCep] = useState(false)
+  const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isFetchingCep, setIsFetchingCep] = useState(false);
 
   const { data: company } = useQuery({
     queryKey: ["company"],
     queryFn: companyService.get,
-  })
+  });
 
   const {
     register,
@@ -60,41 +67,47 @@ export default function Etapa1Page() {
       cidade: company?.cidade ?? "",
       estado: company?.estado ?? "",
     },
-  })
+  });
 
-  const logoUrl = watch("logoUrl")
+  const logoUrl = watch("logoUrl");
 
   async function handleLogoUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file) return
-    if (!file.type.startsWith("image/")) { toast.error("Selecione uma imagem."); return }
-    if (file.size > 2 * 1024 * 1024) { toast.error("Imagem muito grande. Máximo 2 MB."); return }
-    setIsUploading(true)
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("Selecione uma imagem.");
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("Imagem muito grande. Máximo 2 MB.");
+      return;
+    }
+    setIsUploading(true);
     try {
-      const url = await publicService.uploadFile(file)
-      setValue("logoUrl", url)
+      const url = await publicService.uploadFile(file);
+      setValue("logoUrl", url);
     } catch {
-      toast.error("Erro ao fazer upload. Tente novamente.")
+      toast.error("Erro ao fazer upload. Tente novamente.");
     } finally {
-      setIsUploading(false)
+      setIsUploading(false);
     }
   }
 
   async function handleCepBlur(e: React.FocusEvent<HTMLInputElement>) {
-    const cep = e.target.value
-    if (cep.replace(/\D/g, "").length !== 8) return
-    setIsFetchingCep(true)
+    const cep = e.target.value;
+    if (cep.replace(/\D/g, "").length !== 8) return;
+    setIsFetchingCep(true);
     try {
-      const result = await fetchViaCep(cep)
+      const result = await fetchViaCep(cep);
       if (result) {
-        setValue("logradouro", result.logradouro)
-        setValue("cidade", result.localidade)
-        setValue("estado", result.uf)
+        setValue("logradouro", result.logradouro);
+        setValue("cidade", result.localidade);
+        setValue("estado", result.uf);
       } else {
-        toast.error("CEP não encontrado.")
+        toast.error("CEP não encontrado.");
       }
     } finally {
-      setIsFetchingCep(false)
+      setIsFetchingCep(false);
     }
   }
 
@@ -104,14 +117,16 @@ export default function Etapa1Page() {
         ...(values.nome.trim() && { nome: values.nome.trim() }),
         ...(values.logoUrl.trim() && { logoUrl: values.logoUrl.trim() }),
         ...(values.cep.trim() && { cep: values.cep.replace(/\D/g, "") }),
-        ...(values.logradouro.trim() && { logradouro: values.logradouro.trim() }),
+        ...(values.logradouro.trim() && {
+          logradouro: values.logradouro.trim(),
+        }),
         ...(values.cidade.trim() && { cidade: values.cidade.trim() }),
         ...(values.estado.trim() && { estado: values.estado.trim() }),
-      })
-      await companyService.setOnboardingStep(2)
-      router.push("/onboarding/etapa-2")
+      });
+      await companyService.setOnboardingStep(2);
+      router.push("/onboarding/etapa-2");
     } catch {
-      toast.error("Erro ao salvar dados. Tente novamente.")
+      toast.error("Erro ao salvar dados. Tente novamente.");
     }
   }
 
@@ -155,13 +170,14 @@ export default function Etapa1Page() {
             htmlFor="nome"
             className="text-xs uppercase tracking-widest text-muted-foreground"
           >
-            NOME DE EXIBIÇÃO <span className="normal-case tracking-normal">(opcional)</span>
+            NOME DE EXIBIÇÃO{" "}
+            <span className="normal-case tracking-normal">(opcional)</span>
           </Label>
           <div className="relative">
             <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
             <Input
               id="nome"
-              placeholder="Ex: MakerStack RH"
+              placeholder="Ex: EnvieAgora RH"
               className="pl-10"
               {...register("nome")}
             />
@@ -171,7 +187,8 @@ export default function Etapa1Page() {
         {/* Logo upload */}
         <div className="flex flex-col gap-2">
           <Label className="text-xs uppercase tracking-widest text-muted-foreground">
-            LOGOTIPO <span className="normal-case tracking-normal">(opcional)</span>
+            LOGOTIPO{" "}
+            <span className="normal-case tracking-normal">(opcional)</span>
           </Label>
           <input
             ref={fileInputRef}
@@ -182,11 +199,20 @@ export default function Etapa1Page() {
           />
           {logoUrl ? (
             <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/30 px-3 py-2.5">
-              <img src={logoUrl} alt="Logo" className="h-8 object-contain rounded" />
-              <span className="flex-1 text-sm text-muted-foreground truncate">{logoUrl}</span>
+              <img
+                src={logoUrl}
+                alt="Logo"
+                className="h-8 object-contain rounded"
+              />
+              <span className="flex-1 text-sm text-muted-foreground truncate">
+                {logoUrl}
+              </span>
               <button
                 type="button"
-                onClick={() => { setValue("logoUrl", ""); if (fileInputRef.current) fileInputRef.current.value = "" }}
+                onClick={() => {
+                  setValue("logoUrl", "");
+                  if (fileInputRef.current) fileInputRef.current.value = "";
+                }}
                 className="text-muted-foreground hover:text-destructive transition-colors"
               >
                 <X className="size-4" />
@@ -200,7 +226,11 @@ export default function Etapa1Page() {
               disabled={isUploading}
               className="w-full justify-center gap-2"
             >
-              {isUploading ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
+              {isUploading ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                <Upload className="size-4" />
+              )}
               {isUploading ? "Enviando..." : "Fazer upload do logotipo"}
             </Button>
           )}
@@ -209,7 +239,8 @@ export default function Etapa1Page() {
         {/* Endereço */}
         <div className="flex flex-col gap-3">
           <Label className="text-xs uppercase tracking-widest text-muted-foreground">
-            ENDEREÇO <span className="normal-case tracking-normal">(opcional)</span>
+            ENDEREÇO{" "}
+            <span className="normal-case tracking-normal">(opcional)</span>
           </Label>
 
           {/* CEP */}
@@ -228,24 +259,14 @@ export default function Etapa1Page() {
           </div>
 
           {/* Logradouro */}
-          <Input
-            placeholder="Logradouro"
-            {...register("logradouro")}
-          />
+          <Input placeholder="Logradouro" {...register("logradouro")} />
 
           {/* Cidade + Estado */}
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-2">
-              <Input
-                placeholder="Cidade"
-                {...register("cidade")}
-              />
+              <Input placeholder="Cidade" {...register("cidade")} />
             </div>
-            <Input
-              placeholder="UF"
-              maxLength={2}
-              {...register("estado")}
-            />
+            <Input placeholder="UF" maxLength={2} {...register("estado")} />
           </div>
         </div>
       </div>
@@ -257,5 +278,5 @@ export default function Etapa1Page() {
         </Button>
       </div>
     </form>
-  )
+  );
 }

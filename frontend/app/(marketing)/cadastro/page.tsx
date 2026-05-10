@@ -1,48 +1,57 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { CadastroSchema, type CadastroFields } from "@/lib/validations/auth"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Leaf, User, Mail, Lock, Building2, Hash, ArrowRight } from "lucide-react"
-import { toast } from "sonner"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CadastroSchema, type CadastroFields } from "@/lib/validations/auth";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import {
+  Leaf,
+  User,
+  Mail,
+  Lock,
+  Building2,
+  Hash,
+  ArrowRight,
+} from "lucide-react";
+import { toast } from "sonner";
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { authService } from "@/services/auth.service"
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { authService } from "@/services/auth.service";
 
 function formatCNPJ(value: string): string {
-  const digits = value.replace(/\D/g, "").slice(0, 14)
+  const digits = value.replace(/\D/g, "").slice(0, 14);
   return digits
     .replace(/^(\d{2})(\d)/, "$1.$2")
     .replace(/^(\d{2}\.\d{3})(\d)/, "$1.$2")
     .replace(/^(\d{2}\.\d{3}\.\d{3})(\d)/, "$1/$2")
-    .replace(/^(\d{2}\.\d{3}\.\d{3}\/\d{4})(\d)/, "$1-$2")
+    .replace(/^(\d{2}\.\d{3}\.\d{3}\/\d{4})(\d)/, "$1-$2");
 }
 
 export default function CadastroPage() {
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<CadastroFields>({ resolver: zodResolver(CadastroSchema) })
+  } = useForm<CadastroFields>({ resolver: zodResolver(CadastroSchema) });
 
-  const { onChange: onCnpjChange, ...cnpjProps } = register("cnpj")
+  const { onChange: onCnpjChange, ...cnpjProps } = register("cnpj");
 
   async function onSubmit(values: CadastroFields) {
     try {
-      await authService.signup(values)
-      toast.success("Conta criada! Faça seu login para continuar.")
-      router.push("/login")
+      await authService.signup(values);
+      toast.success("Conta criada! Faça seu login para continuar.");
+      router.push("/login");
     } catch (err: unknown) {
       const msg =
-        (err as { response?: { data?: { error?: string } } })?.response?.data?.error ??
-        "Erro ao criar conta. Verifique os dados e tente novamente."
-      toast.error(msg, { duration: 5000 })
+        (err as { response?: { data?: { error?: string } } })?.response?.data
+          ?.error ??
+        "Erro ao criar conta. Verifique os dados e tente novamente.";
+      toast.error(msg, { duration: 5000 });
     }
   }
 
@@ -54,7 +63,7 @@ export default function CadastroPage() {
         <div className="relative z-10 flex flex-col justify-start gap-5 p-10 h-full w-full">
           <div className="flex items-center gap-2 text-primary">
             <Leaf className="size-8" />
-            <span className="text-2xl font-bold">MakerStack RH</span>
+            <span className="text-2xl font-bold">EnvieAgora RH</span>
           </div>
           <div className="max-w-md">
             <h1 className="text-4xl font-bold text-sidebar-foreground mb-4">
@@ -74,64 +83,124 @@ export default function CadastroPage() {
           {/* Mobile logo */}
           <div className="flex lg:hidden items-center gap-2 text-sidebar mb-8">
             <Leaf className="size-8" />
-            <span className="text-2xl font-bold">MakerStack RH</span>
+            <span className="text-2xl font-bold">EnvieAgora RH</span>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-foreground">Crie sua conta</h2>
+            <h2 className="text-3xl font-bold text-foreground">
+              Crie sua conta
+            </h2>
             <p className="text-muted-foreground mt-2">
               Gestão de talentos simplificada para sua empresa.
             </p>
           </div>
 
           <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-4"
+            >
               <div className="flex flex-col gap-2">
-                <Label htmlFor="nome" className="text-xs uppercase tracking-widest text-muted-foreground">
+                <Label
+                  htmlFor="nome"
+                  className="text-xs uppercase tracking-widest text-muted-foreground"
+                >
                   NOME COMPLETO
                 </Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-                  <Input id="nome" type="text" placeholder="Seu nome" className="pl-10" {...register("nome")} />
+                  <Input
+                    id="nome"
+                    type="text"
+                    placeholder="Seu nome"
+                    className="pl-10"
+                    {...register("nome")}
+                  />
                 </div>
-                {errors.nome && <p className="text-xs text-destructive">{errors.nome.message}</p>}
+                {errors.nome && (
+                  <p className="text-xs text-destructive">
+                    {errors.nome.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="email" className="text-xs uppercase tracking-widest text-muted-foreground">
+                <Label
+                  htmlFor="email"
+                  className="text-xs uppercase tracking-widest text-muted-foreground"
+                >
                   E-MAIL PROFISSIONAL
                 </Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-                  <Input id="email" type="email" placeholder="voce@empresa.com.br" className="pl-10" {...register("email")} />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="voce@empresa.com.br"
+                    className="pl-10"
+                    {...register("email")}
+                  />
                 </div>
-                {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-xs text-destructive">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="password" className="text-xs uppercase tracking-widest text-muted-foreground">
+                <Label
+                  htmlFor="password"
+                  className="text-xs uppercase tracking-widest text-muted-foreground"
+                >
                   SENHA
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-                  <Input id="password" type="password" placeholder="••••••••" className="pl-10" {...register("password")} />
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    className="pl-10"
+                    {...register("password")}
+                  />
                 </div>
-                {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+                {errors.password && (
+                  <p className="text-xs text-destructive">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="razaoSocial" className="text-xs uppercase tracking-widest text-muted-foreground">
+                <Label
+                  htmlFor="razaoSocial"
+                  className="text-xs uppercase tracking-widest text-muted-foreground"
+                >
                   RAZÃO SOCIAL
                 </Label>
                 <div className="relative">
                   <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-                  <Input id="razaoSocial" type="text" placeholder="Empresa Ltda." className="pl-10" {...register("razaoSocial")} />
+                  <Input
+                    id="razaoSocial"
+                    type="text"
+                    placeholder="Empresa Ltda."
+                    className="pl-10"
+                    {...register("razaoSocial")}
+                  />
                 </div>
-                {errors.razaoSocial && <p className="text-xs text-destructive">{errors.razaoSocial.message}</p>}
+                {errors.razaoSocial && (
+                  <p className="text-xs text-destructive">
+                    {errors.razaoSocial.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="cnpj" className="text-xs uppercase tracking-widest text-muted-foreground">
+                <Label
+                  htmlFor="cnpj"
+                  className="text-xs uppercase tracking-widest text-muted-foreground"
+                >
                   CNPJ
                 </Label>
                 <div className="relative">
@@ -145,12 +214,16 @@ export default function CadastroPage() {
                     maxLength={18}
                     {...cnpjProps}
                     onChange={(e) => {
-                      e.target.value = formatCNPJ(e.target.value)
-                      onCnpjChange(e)
+                      e.target.value = formatCNPJ(e.target.value);
+                      onCnpjChange(e);
                     }}
                   />
                 </div>
-                {errors.cnpj && <p className="text-xs text-destructive">{errors.cnpj.message}</p>}
+                {errors.cnpj && (
+                  <p className="text-xs text-destructive">
+                    {errors.cnpj.message}
+                  </p>
+                )}
               </div>
 
               <Button
@@ -172,7 +245,10 @@ export default function CadastroPage() {
             <div className="mt-6 pt-6 border-t border-border text-center">
               <p className="text-sm text-muted-foreground">
                 Já tem uma conta?{" "}
-                <Link href="/login" className="text-foreground hover:underline font-bold">
+                <Link
+                  href="/login"
+                  className="text-foreground hover:underline font-bold"
+                >
                   Entrar
                 </Link>
               </p>
@@ -180,16 +256,22 @@ export default function CadastroPage() {
           </div>
 
           <div className="mt-8 flex justify-center gap-6 text-muted-foreground/70">
-            <Link href="#" className="text-xs hover:text-foreground transition-colors">
+            <Link
+              href="#"
+              className="text-xs hover:text-foreground transition-colors"
+            >
               Termos de Uso
             </Link>
             <span className="text-xs">•</span>
-            <Link href="#" className="text-xs hover:text-foreground transition-colors">
+            <Link
+              href="#"
+              className="text-xs hover:text-foreground transition-colors"
+            >
               Política de Privacidade
             </Link>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

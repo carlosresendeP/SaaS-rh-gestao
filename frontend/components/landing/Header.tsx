@@ -1,32 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Leaf, Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useAuth } from "@/hooks/useAuth"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import Image from "next/image";
 
-const NAV_LINKS = ["Soluções", "Preços", "Sobre"]
+const NAV_LINKS = ["Soluções", "Preços", "Sobre"];
 
 export function Header() {
-  const [open, setOpen] = useState(false)
-  const { isAuthenticated } = useAuth()
-  const router = useRouter()
+  const [open, setOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
 
   function handleEnter() {
-    router.push(isAuthenticated ? "/dashboard" : "/login")
-    setOpen(false)
+    router.push(isAuthenticated ? "/dashboard" : "/login");
+    setOpen(false);
   }
 
   return (
     <header className="w-full max-w-[1440px] mx-auto px-6 py-4 relative z-20">
       <div className="flex justify-between items-center">
-
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Leaf className="size-7 text-primary" strokeWidth={2.5} />
+          {/*logo*/}
+          <Image src="/icon-logo.webp" alt="Logo" className="" width={60} height={30} />
           <span className="text-xl font-bold text-foreground tracking-tight">
-            MakerStack RH
+            EnvieAgora<span className="text-primary text-shadow-sm"> RH</span>
           </span>
         </div>
 
@@ -87,5 +88,5 @@ export function Header() {
         </nav>
       )}
     </header>
-  )
+  );
 }

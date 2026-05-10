@@ -4,23 +4,25 @@ import { useState, useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
-  Building2,
-  CheckCircle2,
-  Leaf,
   Paperclip,
   Upload,
   X,
   Link,
-  RefreshCw,
 } from "lucide-react";
+import { Header } from "@/components/candidatar/Header";
+import { LoadingState } from "@/components/candidatar/LoadingState";
+import { ErrorState } from "@/components/candidatar/ErrorState";
+import { SuccessState } from "@/components/candidatar/SuccessState";
+import { JobInfoCard } from "@/components/candidatar/JobInfoCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { publicService, type PublicJob } from "@/services/public.service";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { publicTokenSchema, type PublicTokenFormData } from "@/lib/validations/publicToken";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -32,20 +34,6 @@ function formatSalary(min?: string | null, max?: string | null) {
   return `Até ${fmt(max!)}`;
 }
 
-// ─── Schema ───────────────────────────────────────────────────────────────────
-
-const schema = z.object({
-  nome: z.string().min(3, "Nome muito curto"),
-  email: z.string().email("E-mail inválido"),
-  telefone: z
-    .string()
-    .min(10, "Telefone inválido")
-    .optional()
-    .or(z.literal("")),
-  linkedinUrl: z.string().url("URL inválida").optional().or(z.literal("")),
-});
-
-type FormData = z.infer<typeof schema>;
 
 // ─── States ───────────────────────────────────────────────────────────────────
 
@@ -75,7 +63,7 @@ export default function CandidatarPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<PublicTokenFormData>({ resolver: zodResolver(publicTokenSchema) });
 
   useEffect(() => {
     publicService
@@ -106,7 +94,7 @@ export default function CandidatarPage() {
     setPdfFile(file);
   }
 
-  async function onSubmit(values: FormData) {
+  async function onSubmit(values: PublicTokenFormData) {
     if (!job) return;
 
     // Currículo PDF é obrigatório
@@ -160,54 +148,20 @@ export default function CandidatarPage() {
   // ─── Loading ────────────────────────────────────────────────────────────────
 
   if (state === "loading") {
-    return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Header logoUrl={null} companyName="..." />
-        <main className="flex-1 flex items-start justify-center p-6 pt-10">
-          <div className="w-full max-w-xl space-y-4">
-            <Skeleton className="h-8 w-3/4" />
-            <Skeleton className="h-4 w-1/2" />
-            <Skeleton className="h-40 rounded-xl" />
-            <Skeleton className="h-10 rounded-xl" />
-          </div>
-        </main>
-      </div>
-    );
+    return <LoadingState />;
   }
 
   // ─── Error ──────────────────────────────────────────────────────────────────
 
   if (state === "error") {
-    const isExpired = errorMsg.toLowerCase().includes("encerrada");
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Header logoUrl={null} companyName="MakerStack RH" />
-        <main className="flex-1 flex items-center justify-center p-6">
-          <div className="text-center space-y-4 max-w-sm">
-            <div className="size-14 rounded-full bg-destructive/10 flex items-center justify-center mx-auto">
-              <X className="size-7 text-destructive" />
-            </div>
-            <h2 className="text-xl font-bold">
-              {isExpired ? "Vaga encerrada" : "Link inválido"}
-            </h2>
-            <p className="text-sm text-muted-foreground">{errorMsg}</p>
-            {!isExpired && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-                onClick={() => {
-                setState("loading");
-                setRetryCount((c) => c + 1);
-              }}
-              >
-                <RefreshCw className="size-3.5" />
-                Tentar novamente
-              </Button>
-            )}
-          </div>
-        </main>
-      </div>
+      <ErrorState
+        errorMsg={errorMsg}
+        onRetry={() => {
+          setState("loading");
+          setRetryCount((c) => c + 1);
+        }}
+      />
     );
   }
 
@@ -215,29 +169,11 @@ export default function CandidatarPage() {
 
   if (state === "success") {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Header
-          logoUrl={job?.company?.logoUrl ?? null}
-          companyName={companyName}
-        />
-        <main className="flex-1 flex items-center justify-center p-6">
-          <div className="text-center space-y-4 max-w-sm">
-            <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="size-8 text-sidebar" />
-            </div>
-            <h2 className="text-2xl font-bold">Candidatura enviada!</h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Sua candidatura para <strong>{job?.titulo}</strong> em{" "}
-              <strong>{companyName}</strong> foi recebida com sucesso.
-              {pdfFile && " Seu currículo foi anexado."}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              A equipe de RH entrará em contato caso seu perfil seja
-              selecionado.
-            </p>
-          </div>
-        </main>
-      </div>
+      <SuccessState
+        job={job}
+        companyName={companyName}
+        hasResume={!!pdfFile}
+      />
     );
   }
 
@@ -263,22 +199,12 @@ export default function CandidatarPage() {
           )}
 
           {/* Job info card */}
-          <div className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-2">
-            <h1 className="text-xl sm:text-2xl font-bold leading-tight">
-              {job?.titulo}
-            </h1>
-            <p className="text-sm text-muted-foreground">{companyName}</p>
-            {salary && (
-              <p className="text-sm font-semibold text-sidebar">{salary}</p>
-            )}
-            {description && (
-              <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed pt-1 border-t border-border mt-3">
-                {description.length > 400
-                  ? description.slice(0, 400) + "…"
-                  : description}
-              </p>
-            )}
-          </div>
+          <JobInfoCard
+            job={job}
+            companyName={companyName}
+            salary={salary}
+            description={description}
+          />
 
           {/* Error banner */}
           {errorMsg && state === "form" && (
@@ -454,31 +380,3 @@ export default function CandidatarPage() {
   );
 }
 
-// ─── Header ───────────────────────────────────────────────────────────────────
-
-function Header({
-  logoUrl,
-  companyName,
-}: {
-  logoUrl: string | null;
-  companyName: string;
-}) {
-  return (
-    <header className="border-b border-border bg-card px-4 sm:px-8 py-4 flex items-center gap-3">
-      {logoUrl ? (
-        <img src={logoUrl} alt={companyName} className="h-8 object-contain" />
-      ) : (
-        <div className="size-8 rounded-lg bg-sidebar/20 flex items-center justify-center">
-          <Building2 className="size-4 text-sidebar" />
-        </div>
-      )}
-      <span className="font-semibold text-sm text-foreground">
-        {companyName}
-      </span>
-      <div className="ml-auto flex items-center gap-1.5 text-xs text-muted-foreground">
-        <Leaf className="size-3.5 text-sidebar" />
-        MakerStack RH
-      </div>
-    </header>
-  );
-}
