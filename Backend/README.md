@@ -2,12 +2,6 @@
 
 Esta é a documentação exclusiva do **Backend** do SaaS-RH. O serviço foi construído como uma API RESTful de altíssima performance, sendo o núcleo do sistema responsável por gerir toda a lógica de recrutamento, análise de currículos por IA (Inteligência Artificial), segurança e armazenamento de dados.
 
-<h3>Representação de Processamento (IA)</h3>
-
-<h4>Análise de Compatibilidade</h4>
-<p>
-  <img src="../frontend/public/rh-saas-prints/5-vagas-analise-ia-candidato-gerado.png" width="200" style="border-radius: 8px;" alt="Análise IA pelo Backend">
-</p>
 
 ---
 

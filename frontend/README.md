@@ -1,18 +1,6 @@
 # 🎨 SaaS-RH - Frontend Application
 
 Este é o repositório **Frontend** do projeto SaaS-RH. Ele foi desenvolvido com as mais modernas tecnologias do ecossistema React, com foco absoluto em performance, SEO e Experiência do Usuário (UX). Aqui, gestores de RH gerenciam vagas, e os candidatos realizam suas inscrições em uma interface altamente responsiva e acessível.
-
-<h3>Imagens da Interface</h3>
-
-<h4>Desktop</h4>
-<p>
-  <img src="./public/rh-saas-prints/1-login.png" width="200" style="border-radius: 8px;" alt="Login">
-  <img src="./public/rh-saas-prints/2-register.png" width="200" style="border-radius: 8px;" alt="Register">
-  <img src="./public/rh-saas-prints/3-dashboard.png" width="200" style="border-radius: 8px;" alt="Dashboard Overview">
-  <img src="./public/rh-saas-prints/4-dashboard-2.png" width="200" style="border-radius: 8px;" alt="Dashboard Metrics">
-  <img src="./public/rh-saas-prints/6-vagas-criar.png" width="200" style="border-radius: 8px;" alt="Criação de Vagas">
-</p>
-
 ---
 
 ## 🎯 Sobre o Frontend
