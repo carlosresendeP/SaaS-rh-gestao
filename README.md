@@ -401,10 +401,7 @@ pnpm lint       # Valida codebase (ESLint)
 
 ---
 
-## 👨💻 Autor
-
+## Autor
 **Carlos Paula**
-
 ---
-
 **Versão**: 1.0.0  
